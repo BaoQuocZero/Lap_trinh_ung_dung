@@ -1,1 +1,2 @@
-# L-p-tr-nh-ng-d-ng
+# Lập trình ưng dụng
+- Database chưa có dữ liệu
