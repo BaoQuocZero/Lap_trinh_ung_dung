@@ -1,0 +1,10 @@
+E:\Code\C-sharp\Quản lý Nhân viên\Quản lý Nhân viên\bin\Debug\Quản lý Nhân viên.exe.config
+E:\Code\C-sharp\Quản lý Nhân viên\Quản lý Nhân viên\bin\Debug\Quản lý Nhân viên.exe
+E:\Code\C-sharp\Quản lý Nhân viên\Quản lý Nhân viên\bin\Debug\Quản lý Nhân viên.pdb
+E:\Code\C-sharp\Quản lý Nhân viên\Quản lý Nhân viên\obj\Debug\Quản lý Nhân viên.csproj.AssemblyReference.cache
+E:\Code\C-sharp\Quản lý Nhân viên\Quản lý Nhân viên\obj\Debug\Quản_lý_Nhân_viên.Form1.resources
+E:\Code\C-sharp\Quản lý Nhân viên\Quản lý Nhân viên\obj\Debug\Quản_lý_Nhân_viên.Properties.Resources.resources
+E:\Code\C-sharp\Quản lý Nhân viên\Quản lý Nhân viên\obj\Debug\Quản lý Nhân viên.csproj.GenerateResource.cache
+E:\Code\C-sharp\Quản lý Nhân viên\Quản lý Nhân viên\obj\Debug\Quản lý Nhân viên.csproj.CoreCompileInputs.cache
+E:\Code\C-sharp\Quản lý Nhân viên\Quản lý Nhân viên\obj\Debug\Quản lý Nhân viên.exe
+E:\Code\C-sharp\Quản lý Nhân viên\Quản lý Nhân viên\obj\Debug\Quản lý Nhân viên.pdb
