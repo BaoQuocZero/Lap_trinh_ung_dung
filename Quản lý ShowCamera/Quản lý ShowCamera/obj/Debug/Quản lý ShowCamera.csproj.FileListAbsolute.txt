@@ -1,0 +1,10 @@
+E:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\bin\Debug\Quản lý ShowCamera.exe.config
+E:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\bin\Debug\Quản lý ShowCamera.exe
+E:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\bin\Debug\Quản lý ShowCamera.pdb
+E:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản lý ShowCamera.csproj.AssemblyReference.cache
+E:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản_lý_ShowCamera.Form1.resources
+E:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản_lý_ShowCamera.Properties.Resources.resources
+E:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản lý ShowCamera.csproj.GenerateResource.cache
+E:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản lý ShowCamera.csproj.CoreCompileInputs.cache
+E:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản lý ShowCamera.exe
+E:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản lý ShowCamera.pdb
