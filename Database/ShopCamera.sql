@@ -187,4 +187,51 @@ VALUES
 	(null, N'Hồ Hoàng Phúc', N'Đại học Trà Vinh', N'Tiểu Cần, Trà Vinh', N'Trà Vinh', 0294, 87000, N'Việt Nam', '0327434821', null),
 	(null, N'Nguyễn Tín Thành', N'Đại học Trà Vinh', N'Thành phố Trà Vinh', N'Trà Vinh', 0294, 87000, N'Việt Nam', '0395890398', null),
 	(null, N'Huỳnh Nhựt Huy', N'Đại học Trà Vinh', N'Thành phố Trà Vinh', N'Trà Vinh', 0294, 87000, N'Việt Nam', '0363507787', null);
-	
+
+INSERT INTO [dbo].[NhaCungCap](
+	  [TenCongTyNCC]
+      ,[TenLienHeNCC]
+      ,[ThongTinLienLacNCC]
+      ,[DiaChiNCC]
+      ,[ThanhPho]
+      ,[QuocGia]
+      ,[Sdt]
+      ,[WebSite]
+)
+VALUES
+	(N'Sony', N'Yoshida Kenichiro', N'Minato, Tokyo, Nhật Bản', N'Minato, Tokyo, Nhật Bản', N'Tokyo', N'Nhật Bản', '02838222227', 'https://www.sony.com.vn/microsite/companyoutline'),
+	(N'Nikon', N'Michio Kariya', N'Tokyo, Nhật Bản', N'Tokyo, Nhật Bản', N'Tokyo', N'Nhật Bản', '02838442008', 'https://www.nikon.com/'),
+	(N'Camon', N'Mitarai Fujio', N'Ōta, Tokyo', N'Ōta, Tokyo', N'Tokyo', N'Nhật Bản', '02438812111', 'http://www.canon.com.vn/'),
+	(N'Fujifilm', N'Teiichi Goto', N'Minato, Tôkyô, Nhật Bản', N'Minato, Tôkyô, Nhật Bản', N'Tokyo', N'Nhật Bản', ' 0243943-0321', 'https://www.nikon.com/'),
+	(N'Leica', N'Andreas Kaufmann', N'Wetzlar, Đức', N'Wetzlar, Đức', N'Wetzlar', N'Đức', '0945488948', 'http://www.leica-camera.com/')
+
+INSERT INTO [dbo].[TheLoai](
+      [TenTL]
+      ,[MoTaTL]
+      ,[HinhAnhTL]
+)
+VALUES
+	(N'Máy ảnh', N'Máy ảnh hay máy chụp hình là một dụng cụ dùng để thu ảnh thành một ảnh tĩnh hay thành một loạt các ảnh chuyển động', null)
+
+INSERT INTO [dbo].[SanPham](
+      [TenSP]
+      ,[MaNCC]
+      ,[MaTL]
+      ,[SoLuongTrenDonViSP]
+      ,[DonGiaSP]
+      ,[TonKhoSP]
+      ,[DatTruocSP]
+      ,[TonKhoToiThieuSP]
+      ,[NgungKinhDoanhSP]
+)
+VALUES
+	(N'Sony a6000', 1, 1, N'1xCamera, lens kit, pin, thẻ nhớ, túi đựng', 7000000, 12, 0, 1, 0),
+	(N'Sony a6500', 1, 1, N'1xCamera, lens kit, pin, thẻ nhớ, túi đựng', 25000000, 10, 0, 1, 0),
+	(N'Nikon D5200', 2, 1, N'1xCamera, lens kit, pin, thẻ nhớ, túi đựng', 4000000, 20, 0, 1, 0),
+	(N'Nikon Z9', 2, 1, N'1xCamera, lens kit, pin, thẻ nhớ, túi đựng', 130000000, 5, 0, 1, 0),
+	(N'Canon 60D', 3, 1, N'1xCamera, lens kit, pin, thẻ nhớ, túi đựng', 4000000, 20, 0, 1, 0),
+	(N'Camon 6D', 3, 1, N'1xCamera, lens kit, pin, thẻ nhớ, túi đựng', 10000000, 22, 0, 1, 0),
+	(N'Fujifilm XT100', 4, 1, N'1xCamera, lens kit, pin, thẻ nhớ, túi đựng', 8000000, 22, 0, 1, 0),
+	(N'Fujifilm XT5', 4, 1, N'1xCamera, lens kit, pin, thẻ nhớ, túi đựng', 8000000, 17, 0, 1, 0),
+	(N'Leica M6', 5, 1, N'1xCamera, lens kit, pin, thẻ nhớ, túi đựng', 65000000, 10, 0, 1, 0),
+	(N'Leica M11', 5, 1, N'1xCamera, lens kit, pin, thẻ nhớ, túi đựng', 185000000, 5, 0, 1, 0)
