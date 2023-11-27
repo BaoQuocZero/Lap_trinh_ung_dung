@@ -18,3 +18,4 @@ C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug
 C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản lý ShowCamera.csproj.CoreCompileInputs.cache
 C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản lý ShowCamera.exe
 C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản lý ShowCamera.pdb
+C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản_lý_ShowCamera.FrmTrungTenKH.resources

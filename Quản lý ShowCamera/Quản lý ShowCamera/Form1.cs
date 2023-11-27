@@ -39,7 +39,7 @@ namespace Quản_lý_ShowCamera
             command = connection.CreateCommand();
             command.CommandText = "SELECT * FROM ChiTietHoaDon";
             adapter.SelectCommand = command;
-            tableHoaDon.Clear();
+            tableChiTietHoaDon.Clear();
             adapter.Fill(tableChiTietHoaDon);
             dgvMain.DataSource = tableChiTietHoaDon;
         }
@@ -132,11 +132,55 @@ namespace Quản_lý_ShowCamera
             connection.Open();
             HoaDon();
 
-            // Thêm sự kiện Click cho TextBox txtTenKH
+            // Thêm sự kiện Click cho TextBox txtTenKH, Địa chỉ, Sdt
             txtTenKH.Click += TxtTenKH_Click;
-            txtTenSP.Click += TxtTenKH_Click;
+            txtDiaChi.Click += TxtTenDiaChi_Click;
+            txtSdtKH.Click += TxtSdtKH_Click;
+            // Thêm sự kiện Click cho TextBox txtTenSP, Tên NV
+            txtTenSP.Click += TxtTenSP_Click;
+            txtTenNV.Click += TxtTenNV_Click;
 
         }
+
+        private void TxtTenKH_Click(object sender, EventArgs e)
+        {
+            // Hiển thị bảng KhachHang khi người dùng nhấn vào txtTenKH
+            khachhang();
+            lblTieuDe.Text = "Khách hàng";
+        }
+
+        private void TxtTenDiaChi_Click(object sender, EventArgs e)
+        {
+            // Hiển thị bảng KhachHang khi người dùng nhấn vào txtTenKH
+            khachhang();
+            lblTieuDe.Text = "Khách hàng";
+        }
+
+        private void TxtSdtKH_Click(object sender, EventArgs e)
+        {
+            // Hiển thị bảng KhachHang khi người dùng nhấn vào txtTenKH
+            khachhang();
+            lblTieuDe.Text = "Khách hàng";
+        }
+
+        private void TxtTenSP_Click(object sender, EventArgs e)
+        {
+            // Gọi phương thức hiển thị dữ liệu của bảng "SanPham"
+            sanpham();
+
+            // Cập nhật tiêu đề để thông báo rằng đang hiển thị bảng "SanPham"
+            lblTieuDe.Text = "Sản phẩm";
+        }
+
+        private void TxtTenNV_Click(object sender, EventArgs e)
+        {
+            // Gọi phương thức hiển thị dữ liệu của bảng "SanPham"
+            nhanvien();
+
+            // Cập nhật tiêu đề để thông báo rằng đang hiển thị bảng "SanPham"
+            lblTieuDe.Text = "Nhân viên";
+        }
+
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -171,6 +215,18 @@ namespace Quản_lý_ShowCamera
                 txtDiaChi.Text = dgvMain.Rows[i].Cells[3].Value.ToString();
                 txtSdtKH.Text = dgvMain.Rows[i].Cells[4].Value.ToString();
             }
+
+            if (lblTieuDe.Text == "Sản phẩm")
+            {
+                txtMaSP.Text = dgvMain.Rows[i].Cells[0].Value.ToString();
+                txtTenSP.Text = dgvMain.Rows[i].Cells[1].Value.ToString();
+            }
+
+            if (lblTieuDe.Text == "Nhân viên")
+            {
+                txtMaNV.Text = dgvMain.Rows[i].Cells[0].Value.ToString();
+                txtTenNV.Text = dgvMain.Rows[i].Cells[3].Value.ToString();
+            }
         }
 
         private void mnuKhachHang_Click(object sender, EventArgs e)
@@ -187,7 +243,8 @@ namespace Quản_lý_ShowCamera
 
         private void txtTenKH_TextChanged(object sender, EventArgs e)
         {
-           
+            khachhang();
+            lblTieuDe.Text = "Khách hàng";
         }
 
         private void mnuNhaCungCap_Click(object sender, EventArgs e)
@@ -217,13 +274,6 @@ namespace Quản_lý_ShowCamera
             lblTieuDe.Text = "Sản phẩm";
         }
 
-        private void TxtTenKH_Click(object sender, EventArgs e)
-        {
-            // Hiển thị bảng KhachHang khi người dùng nhấn vào txtTenKH
-            khachhang();
-            lblTieuDe.Text = "Khách hàng";
-        }
-
         private void chiTiếtHóaĐơnToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ChiTietHoaDon();
@@ -234,6 +284,140 @@ namespace Quản_lý_ShowCamera
         {
             thongke();
             lblTieuDe.Text = "Thống kê khách hàng";
+        }
+
+        private void txtDiaChi_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSdtKH_TextChanged(object sender, EventArgs e)
+        {
+            khachhang();
+            lblTieuDe.Text = "Khách hàng";
+
+            // Xóa bỏ các ký tự không phải số
+            string input = new string(txtSdtKH.Text.Where(char.IsDigit).ToArray());
+
+            // Giữ lại chỉ 10 ký tự đầu tiên
+            if (input.Length > 10)
+            {
+                input = input.Substring(0, 10);
+            }
+
+            // Cập nhật giá trị của TextBox
+            txtSdtKH.Text = input;
+        }
+
+        private void txtSoLuong_TextChanged(object sender, EventArgs e)
+        {
+            // Xóa bỏ các ký tự không phải số
+            string input = new string(txtSoLuong.Text.Where(char.IsDigit).ToArray());
+
+            // Cập nhật giá trị của TextBox
+            txtSoLuong.Text = input;
+
+        }
+
+        private void mnuTimTen_Click(object sender, EventArgs e)
+        {
+            lblTieuDe.Text = "Sản phẩm";
+
+            // Sử dụng tham số để tránh tình trạng SQL injection
+            command = connection.CreateCommand();
+            command.CommandText = "SELECT * FROM SanPham WHERE TenSP LIKE @TenSP";
+            command.Parameters.AddWithValue("@TenSP", "%" + txtTenSP.Text + "%");
+
+            adapter.SelectCommand = command;
+            tableSanPham.Clear();
+            adapter.Fill(tableSanPham);
+            dgvMain.DataSource = tableSanPham;
+        }
+        // Hàm thêm mới khách hàng
+        private void ThemMoiKhachHang(string tenKhachHang, string diaChi, string sdt)
+        {
+            // Thực hiện câu lệnh SQL để thêm mới khách hàng
+            // Lưu ý: Đây chỉ là ví dụ, bạn cần điều chỉnh để phản ánh đúng cấu trúc của CSDL của bạn
+            // Ví dụ: INSERT INTO KhachHang (TenLienHe, DiaChi, Sdt) VALUES ('Tên khách hàng mới', 'Địa chỉ mới', 'Số điện thoại mới');
+            command = connection.CreateCommand();
+            command.CommandText = "INSERT INTO KhachHang (TenLienHe, DiaChi, Sdt) VALUES (@TenLienHe, @DiaChi, @Sdt)";
+            command.Parameters.AddWithValue("@TenLienHe", tenKhachHang);
+            command.Parameters.AddWithValue("@DiaChi", diaChi);
+            command.Parameters.AddWithValue("@Sdt", sdt);
+            command.ExecuteNonQuery();
+        }
+
+        // Hàm làm sạch TextBox của khách hàng
+        private void LamSachTextBoxKhachHang()
+        {
+            txtTenKH.Text = "";
+            txtDiaChi.Text = "";
+            txtSdtKH.Text = "";
+        }
+
+        // Hàm lấy thông tin từ TextBox
+        private void LayThongTinTextBoxKhachHang(out string tenKhachHang, out string diaChi, out string sdt)
+        {
+            tenKhachHang = txtTenKH.Text;
+            diaChi = txtDiaChi.Text;
+            sdt = txtSdtKH.Text;
+        }
+
+        private void mnuThem_Click(object sender, EventArgs e)
+        {
+            string tenKhachHang, diaChi, sdt;
+
+            // Lấy thông tin từ TextBox
+            LayThongTinTextBoxKhachHang(out tenKhachHang, out diaChi, out sdt);
+
+            // Kiểm tra xem tên khách hàng đã tồn tại hay chưa
+            DataTable resultTable = TimKiemKhachHangTheoTen(tenKhachHang);
+
+            if (resultTable.Rows.Count > 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Có vẻ chúng ta có nhiều người bị trùng tên ở đây, bạn có nằm trong số đó không?", "Thông báo", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    // Mở FrmTrungTenKH và truyền dữ liệu từ Form1
+                    FrmTrungTenKH frmTrungTenKH = new FrmTrungTenKH(resultTable);
+                    frmTrungTenKH.LayDuLieuForm1(txtTenSP.Text, txtTenNV.Text, txtSoLuong.Text, txtMaSP.Text, txtMaNV.Text);
+                    frmTrungTenKH.ShowDialog();
+                }
+                // Nếu chọn NO thì không cần làm gì cả
+            }
+            else
+            {
+                ThemMoiKhachHang(tenKhachHang, diaChi, sdt);
+                khachhang();
+                lblTieuDe.Text = "Khách hàng";
+                LamSachTextBoxKhachHang();
+            }
+        }
+
+        // Hàm tìm kiếm khách hàng theo tên
+        private DataTable TimKiemKhachHangTheoTen(string tenKhachHang)
+        {
+            // Sử dụng tham số để tránh tình trạng SQL injection
+            command = connection.CreateCommand();
+            command.CommandText = "SELECT * FROM KhachHang WHERE TenLienHe LIKE @TenLienHe";
+            command.Parameters.AddWithValue("@TenLienHe", "%" + tenKhachHang + "%");
+
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataTable resultTable = new DataTable();
+            adapter.Fill(resultTable);
+
+            return resultTable;
+        }
+
+        private void txtMaSP_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMaNV_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
