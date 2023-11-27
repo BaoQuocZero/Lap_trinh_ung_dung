@@ -1,3 +1,2 @@
 # Lập trình ưng dụng
-- Database chưa có dữ liệu (40% hoàn thành)
-- Chức năng chưa hoàn thành
+- Có ai nhận làm CRUD không chứ t sấp chết rồi
