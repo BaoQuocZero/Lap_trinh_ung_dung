@@ -15,7 +15,7 @@ namespace Quản_lý_ShowCamera
     {
         SqlConnection connection;
         SqlCommand command;
-        string str = "Data Source=.;Initial Catalog=ShopCamera;Integrated Security=True;";
+        string str = "Data Source=DESKTOP-SDFOMUO;Initial Catalog=ShopCamera;Integrated Security=True;";
         SqlDataAdapter adapter = new SqlDataAdapter();
 
         // Thêm một biến để lưu trữ dữ liệu từ đối số

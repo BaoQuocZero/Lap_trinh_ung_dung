@@ -15,7 +15,7 @@ namespace Quản_lý_ShowCamera
     {
         SqlConnection connection;
         SqlCommand command;
-        string str = "Data Source=.;Initial Catalog=ShopCamera;Integrated Security=True;";
+        string str = "Data Source=DESKTOP-SDFOMUO;Initial Catalog=ShopCamera;Integrated Security=True;";
         SqlDataAdapter adapter = new SqlDataAdapter();
         DataTable tableHoaDon = new DataTable();
         DataTable tableChiTietHoaDon = new DataTable();
