@@ -39,16 +39,16 @@
             this.txtDiaChiKH = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtSdtKH = new System.Windows.Forms.TextBox();
-            this.btnXacNhan = new System.Windows.Forms.Button();
             this.lblTenSP = new System.Windows.Forms.Label();
             this.txtTenSP = new System.Windows.Forms.TextBox();
+            this.txtMaSP = new System.Windows.Forms.TextBox();
             this.LblTenNhanVien = new System.Windows.Forms.Label();
             this.txtTenNV = new System.Windows.Forms.TextBox();
+            this.txtMaNV = new System.Windows.Forms.TextBox();
             this.lblSoLuong = new System.Windows.Forms.Label();
             this.txtSoLuong = new System.Windows.Forms.TextBox();
+            this.btnXacNhan = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.txtMaSP = new System.Windows.Forms.TextBox();
-            this.txtMaNV = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTrungTenKH)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -161,17 +161,6 @@
             this.txtSdtKH.Size = new System.Drawing.Size(181, 20);
             this.txtSdtKH.TabIndex = 8;
             // 
-            // btnXacNhan
-            // 
-            this.btnXacNhan.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXacNhan.Location = new System.Drawing.Point(12, 143);
-            this.btnXacNhan.Name = "btnXacNhan";
-            this.btnXacNhan.Size = new System.Drawing.Size(855, 30);
-            this.btnXacNhan.TabIndex = 2;
-            this.btnXacNhan.Text = "Xác Nhận";
-            this.btnXacNhan.UseVisualStyleBackColor = true;
-            this.btnXacNhan.Click += new System.EventHandler(this.btnXacNhan_Click);
-            // 
             // lblTenSP
             // 
             this.lblTenSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -190,6 +179,15 @@
             this.txtTenSP.Size = new System.Drawing.Size(147, 20);
             this.txtTenSP.TabIndex = 32;
             this.txtTenSP.TextChanged += new System.EventHandler(this.txtTenSP_TextChanged);
+            // 
+            // txtMaSP
+            // 
+            this.txtMaSP.Location = new System.Drawing.Point(589, 52);
+            this.txtMaSP.Name = "txtMaSP";
+            this.txtMaSP.ReadOnly = true;
+            this.txtMaSP.Size = new System.Drawing.Size(28, 20);
+            this.txtMaSP.TabIndex = 35;
+            this.txtMaSP.TextChanged += new System.EventHandler(this.txtMaSP_TextChanged);
             // 
             // LblTenNhanVien
             // 
@@ -210,6 +208,14 @@
             this.txtTenNV.TabIndex = 30;
             this.txtTenNV.TextChanged += new System.EventHandler(this.txtTenNV_TextChanged);
             // 
+            // txtMaNV
+            // 
+            this.txtMaNV.Location = new System.Drawing.Point(899, 52);
+            this.txtMaNV.Name = "txtMaNV";
+            this.txtMaNV.ReadOnly = true;
+            this.txtMaNV.Size = new System.Drawing.Size(28, 20);
+            this.txtMaNV.TabIndex = 36;
+            // 
             // lblSoLuong
             // 
             this.lblSoLuong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -229,6 +235,17 @@
             this.txtSoLuong.TabIndex = 34;
             this.txtSoLuong.TextChanged += new System.EventHandler(this.txtSoLuong_TextChanged);
             // 
+            // btnXacNhan
+            // 
+            this.btnXacNhan.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXacNhan.Location = new System.Drawing.Point(12, 143);
+            this.btnXacNhan.Name = "btnXacNhan";
+            this.btnXacNhan.Size = new System.Drawing.Size(855, 30);
+            this.btnXacNhan.TabIndex = 2;
+            this.btnXacNhan.Text = "Xác Nhận";
+            this.btnXacNhan.UseVisualStyleBackColor = true;
+            this.btnXacNhan.Click += new System.EventHandler(this.btnXacNhan_Click);
+            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -238,23 +255,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "Hủy";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // txtMaSP
-            // 
-            this.txtMaSP.Location = new System.Drawing.Point(589, 52);
-            this.txtMaSP.Name = "txtMaSP";
-            this.txtMaSP.ReadOnly = true;
-            this.txtMaSP.Size = new System.Drawing.Size(28, 20);
-            this.txtMaSP.TabIndex = 35;
-            this.txtMaSP.TextChanged += new System.EventHandler(this.txtMaSP_TextChanged);
-            // 
-            // txtMaNV
-            // 
-            this.txtMaNV.Location = new System.Drawing.Point(899, 52);
-            this.txtMaNV.Name = "txtMaNV";
-            this.txtMaNV.ReadOnly = true;
-            this.txtMaNV.Size = new System.Drawing.Size(28, 20);
-            this.txtMaNV.TabIndex = 36;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FrmTrungTenKH
             // 

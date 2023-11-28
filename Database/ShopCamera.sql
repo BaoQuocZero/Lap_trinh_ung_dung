@@ -1,14 +1,14 @@
 ﻿CREATE DATABASE ShopCamera
 ON
 (	NAME = 'ShopCamera_data',
-	FILENAME = 'C:\Code\ShopCamera_data.mdf'
+	FILENAME = 'C:\ShopCamera_data.mdf'
 	--SIZE = 10MB,
 	--MAXSIZE = 100MB,
 	--FILEGROWTH = 5MB
 )
 LOG ON
 (	NAME = 'ShopCamera_log',
-	FILENAME = 'C:\Code\ShopCamera_data.ldf'
+	FILENAME = 'C:\ShopCamera_data.ldf'
 	--SIZE = 5MB,
 	--MAXSIZE = 50MB,
 	--FILEGROWTH = 5MB
@@ -131,7 +131,7 @@ VALUES
     (4, 2, 1), (4, 4, 2), (4, 8, 1),
     (5, 3, 1), (5, 5, 2), (5, 9, 1);
 
-
+-- Cụm xử lý thử nghệm ================================================================
 SELECT 
     KH.TenLienHe AS [Tên khách hàng], 
     COUNT(CTHD.MaSP) AS [Số sản phẩm đã mua],

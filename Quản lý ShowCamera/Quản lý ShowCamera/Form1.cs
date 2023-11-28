@@ -15,7 +15,7 @@ namespace Quản_lý_ShowCamera
     {
         SqlConnection connection;
         SqlCommand command;
-        string str = "Data Source=DESKTOP-SDFOMUO;Initial Catalog=ShopCamera;Integrated Security=True;";
+        string str = "Data Source=.;Initial Catalog=ShopCamera;Integrated Security=True;";
         SqlDataAdapter adapter = new SqlDataAdapter();
         DataTable tableHoaDon = new DataTable();
         DataTable tableChiTietHoaDon = new DataTable();
@@ -319,6 +319,7 @@ namespace Quản_lý_ShowCamera
 
         }
 
+
         private void mnuTimTen_Click(object sender, EventArgs e)
         {
             lblTieuDe.Text = "Sản phẩm";
@@ -333,18 +334,60 @@ namespace Quản_lý_ShowCamera
             adapter.Fill(tableSanPham);
             dgvMain.DataSource = tableSanPham;
         }
+
+        // Cụm thêm mới ==============================================================================================================================================================================
+
         // Hàm thêm mới khách hàng
-        private void ThemMoiKhachHang(string tenKhachHang, string diaChi, string sdt)
+        private int ThemMoiKhachHang(string tenKhachHang, string diaChi, string sdt)
         {
-            // Thực hiện câu lệnh SQL để thêm mới khách hàng
-            // Lưu ý: Đây chỉ là ví dụ, bạn cần điều chỉnh để phản ánh đúng cấu trúc của CSDL của bạn
-            // Ví dụ: INSERT INTO KhachHang (TenLienHe, DiaChi, Sdt) VALUES ('Tên khách hàng mới', 'Địa chỉ mới', 'Số điện thoại mới');
-            command = connection.CreateCommand();
-            command.CommandText = "INSERT INTO KhachHang (TenLienHe, DiaChi, Sdt) VALUES (@TenLienHe, @DiaChi, @Sdt)";
-            command.Parameters.AddWithValue("@TenLienHe", tenKhachHang);
-            command.Parameters.AddWithValue("@DiaChi", diaChi);
-            command.Parameters.AddWithValue("@Sdt", sdt);
-            command.ExecuteNonQuery();
+            int maKH = 0; // Giá trị mặc định nếu không có giá trị trả về
+
+            string query = "INSERT INTO KhachHang (TenLienHe, DiaChi, Sdt) OUTPUT INSERTED.MaKH VALUES (@TenLienHe, @DiaChi, @Sdt)";
+
+            using (SqlConnection conn = new SqlConnection(str))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@TenLienHe", tenKhachHang);
+                cmd.Parameters.AddWithValue("@DiaChi", diaChi);
+                cmd.Parameters.AddWithValue("@Sdt", sdt);
+
+                conn.Open();
+                maKH = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+
+            return maKH;
+        }
+
+
+        private void ThemHoaDon_ChiTietHoaDon(int MaKH, string MaSP, string MaNV, string diaChiShip, string SL)
+        {
+            // Thực hiện câu lệnh SQL để thêm mới hóa đơn và lấy mã hóa đơn
+            int MaHD;
+            string query = "INSERT INTO HoaDon (MaKH, MaNV, DiaChiShip) VALUES (@MaKH, @MaNV, @DiaChiShip);" +
+                           "SELECT SCOPE_IDENTITY();";
+
+            using (SqlConnection conn = new SqlConnection(str))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@MaKH", MaKH);
+                cmd.Parameters.AddWithValue("@MaNV", MaNV);
+                cmd.Parameters.AddWithValue("@DiaChiShip", diaChiShip); // Sử dụng DiaChiShip thay vì DiaChi
+
+                conn.Open();
+                MaHD = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            //Thêm chi tiết hóa đơn
+            using (SqlConnection conn = new SqlConnection(str))
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO ChiTietHoaDon (MaHD, MaSP, SoLuong) VALUES (@MaHD, @MaSP, @SoLuong)", conn))
+            {
+                cmd.Parameters.AddWithValue("@MaHD", MaHD);
+                cmd.Parameters.AddWithValue("@MaSP", MaSP);
+                cmd.Parameters.AddWithValue("@SoLuong", SL);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+
         }
 
         // Hàm làm sạch TextBox của khách hàng
@@ -356,19 +399,22 @@ namespace Quản_lý_ShowCamera
         }
 
         // Hàm lấy thông tin từ TextBox
-        private void LayThongTinTextBoxKhachHang(out string tenKhachHang, out string diaChi, out string sdt)
+        private void LayThongTinTextBoxKhachHang(out string tenKhachHang, out string diaChi, out string sdt, out string MaSP, out string MaNV, out string SL)
         {
             tenKhachHang = txtTenKH.Text;
             diaChi = txtDiaChi.Text;
             sdt = txtSdtKH.Text;
+            MaSP = txtMaSP.Text;
+            MaNV = txtMaNV.Text;
+            SL = txtSoLuong.Text;
         }
 
         private void mnuThem_Click(object sender, EventArgs e)
         {
-            string tenKhachHang, diaChi, sdt;
+            string tenKhachHang, diaChi, sdt, MaSP, MaNV, SL;
 
             // Lấy thông tin từ TextBox
-            LayThongTinTextBoxKhachHang(out tenKhachHang, out diaChi, out sdt);
+            LayThongTinTextBoxKhachHang(out tenKhachHang, out diaChi, out sdt, out MaSP, out MaNV, out SL);
 
             // Kiểm tra xem tên khách hàng đã tồn tại hay chưa
             DataTable resultTable = TimKiemKhachHangTheoTen(tenKhachHang);
@@ -384,11 +430,22 @@ namespace Quản_lý_ShowCamera
                     frmTrungTenKH.LayDuLieuForm1(txtTenSP.Text, txtTenNV.Text, txtSoLuong.Text, txtMaSP.Text, txtMaNV.Text);
                     frmTrungTenKH.ShowDialog();
                 }
-                // Nếu chọn NO thì không cần làm gì cả
+                // Nếu chọn NO thì 
+                else
+                {
+                    MessageBox.Show("Có vẻ đây là một cái tên phổ biến ?", "Thông báo", MessageBoxButtons.OK);
+                    int MaKH = ThemMoiKhachHang(tenKhachHang, diaChi, sdt);
+                    ThemHoaDon_ChiTietHoaDon(MaKH, MaSP, MaNV, diaChi, SL);
+                    khachhang();
+                    lblTieuDe.Text = "Khách hàng";
+                    LamSachTextBoxKhachHang();
+                }
             }
             else
             {
-                ThemMoiKhachHang(tenKhachHang, diaChi, sdt);
+                MessageBox.Show("Chào mừng bạn đến với chúng tôi, hồ sơ khách hàng đã được tạo!!!", "Thông báo", MessageBoxButtons.OK);
+                int MaKH = ThemMoiKhachHang(tenKhachHang, diaChi, sdt);
+                ThemHoaDon_ChiTietHoaDon(MaKH, MaSP, MaNV, diaChi, SL);
                 khachhang();
                 lblTieuDe.Text = "Khách hàng";
                 LamSachTextBoxKhachHang();
@@ -409,6 +466,13 @@ namespace Quản_lý_ShowCamera
 
             return resultTable;
         }
+
+        private void themHoaDon_themChiTietHoaDon()
+        {
+
+        }
+
+        //=========================================================================================================================================================================================
 
         private void txtMaSP_TextChanged(object sender, EventArgs e)
         {
