@@ -12,13 +12,11 @@ C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\bin\Debug
 C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\bin\Debug\Quản lý ShowCamera.exe
 C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\bin\Debug\Quản lý ShowCamera.pdb
 C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản lý ShowCamera.csproj.AssemblyReference.cache
-C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản_lý_ShowCamera.Form1.resources
 C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản_lý_ShowCamera.Properties.Resources.resources
 C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản lý ShowCamera.csproj.GenerateResource.cache
 C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản lý ShowCamera.csproj.CoreCompileInputs.cache
 C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản lý ShowCamera.exe
 C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản lý ShowCamera.pdb
-C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản_lý_ShowCamera.FrmTrungTenKH.resources
 C:\Users\Hoc vien\Downloads\Lap_trinh_ung_dung-main\Quản lý ShowCamera\Quản lý ShowCamera\bin\Debug\Quản lý ShowCamera.exe.config
 C:\Users\Hoc vien\Downloads\Lap_trinh_ung_dung-main\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản lý ShowCamera.exe
 C:\Users\Hoc vien\Downloads\Lap_trinh_ung_dung-main\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản lý ShowCamera.pdb
@@ -39,3 +37,5 @@ D:\DA21TTA\Lap_trinh_ung_dung-main\Quản lý ShowCamera\Quản lý ShowCamera\o
 D:\DA21TTA\Lap_trinh_ung_dung-main\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản lý ShowCamera.csproj.GenerateResource.Cache
 D:\DA21TTA\Lap_trinh_ung_dung-main\Quản lý ShowCamera\Quản lý ShowCamera\bin\Debug\Quản lý ShowCamera.exe
 D:\DA21TTA\Lap_trinh_ung_dung-main\Quản lý ShowCamera\Quản lý ShowCamera\bin\Debug\Quản lý ShowCamera.pdb
+C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản_lý_ShowCamera.FrmMain.resources
+C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản_lý_ShowCamera.FrmKhachHang.resources

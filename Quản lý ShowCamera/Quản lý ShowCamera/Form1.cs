@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Quản_lý_ShowCamera
 {
-    public partial class Form1 : Form
+    public partial class FrmMain : Form
     {
         SqlConnection connection;
         SqlCommand command;
@@ -94,7 +94,7 @@ namespace Quản_lý_ShowCamera
             dgvMain.DataSource = tableThongKe;
         }
 
-        public Form1()
+        public FrmMain()
         {
             InitializeComponent();
         }
@@ -211,15 +211,17 @@ namespace Quản_lý_ShowCamera
             i = dgvMain.CurrentRow.Index;
             if (lblTieuDe.Text == "Khách hàng")
             {
-                txtTenKH.Text = dgvMain.Rows[i].Cells[2].Value.ToString();
-                txtDiaChi.Text = dgvMain.Rows[i].Cells[3].Value.ToString();
-                txtSdtKH.Text = dgvMain.Rows[i].Cells[4].Value.ToString();
+                txtMaKH.Text = dgvMain.Rows[i].Cells[0].Value.ToString();
+                txtTenKH.Text = dgvMain.Rows[i].Cells[1].Value.ToString();
+                txtDiaChi.Text = dgvMain.Rows[i].Cells[2].Value.ToString();
+                txtSdtKH.Text = dgvMain.Rows[i].Cells[3].Value.ToString();
             }
 
             if (lblTieuDe.Text == "Sản phẩm")
             {
                 txtMaSP.Text = dgvMain.Rows[i].Cells[0].Value.ToString();
                 txtTenSP.Text = dgvMain.Rows[i].Cells[1].Value.ToString();
+                txtTonKho.Text = dgvMain.Rows[i].Cells[5].Value.ToString();
             }
 
             if (lblTieuDe.Text == "Nhân viên")
@@ -231,8 +233,8 @@ namespace Quản_lý_ShowCamera
 
         private void mnuKhachHang_Click(object sender, EventArgs e)
         {
-            khachhang();
-            lblTieuDe.Text = "Khách hàng";
+            FrmKhachHang frm = new FrmKhachHang();
+            frm.ShowDialog();
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -317,6 +319,21 @@ namespace Quản_lý_ShowCamera
             // Cập nhật giá trị của TextBox
             txtSoLuong.Text = input;
 
+            // Kiểm tra nếu txtSoLuong và txtTonKho không rỗng
+            if (!string.IsNullOrEmpty(txtSoLuong.Text) && !string.IsNullOrEmpty(txtTonKho.Text))
+            {
+                // Chuyển giá trị từ TextBox về dạng số
+                int soLuong = int.Parse(txtSoLuong.Text);
+                int tonKho = int.Parse(txtTonKho.Text);
+
+                // Kiểm tra nếu số lượng lớn hơn tồn kho, thiết lập giá trị về tồn kho
+                if (soLuong > tonKho)
+                {
+                    MessageBox.Show("Số lượng không được lớn hơn tồn kho!");
+                    txtSoLuong.Text = txtTonKho.Text;
+                }
+            }
+
         }
 
 
@@ -337,70 +354,10 @@ namespace Quản_lý_ShowCamera
 
         // Cụm thêm mới ==============================================================================================================================================================================
 
-        // Hàm thêm mới khách hàng
-        private int ThemMoiKhachHang(string tenKhachHang, string diaChi, string sdt)
-        {
-            int maKH = 0; // Giá trị mặc định nếu không có giá trị trả về
-
-            string query = "INSERT INTO KhachHang (TenLienHe, DiaChi, Sdt) OUTPUT INSERTED.MaKH VALUES (@TenLienHe, @DiaChi, @Sdt)";
-
-            using (SqlConnection conn = new SqlConnection(str))
-            using (SqlCommand cmd = new SqlCommand(query, conn))
-            {
-                cmd.Parameters.AddWithValue("@TenLienHe", tenKhachHang);
-                cmd.Parameters.AddWithValue("@DiaChi", diaChi);
-                cmd.Parameters.AddWithValue("@Sdt", sdt);
-
-                conn.Open();
-                maKH = Convert.ToInt32(cmd.ExecuteScalar());
-            }
-
-            return maKH;
-        }
-
-
-        private void ThemHoaDon_ChiTietHoaDon(int MaKH, string MaSP, string MaNV, string diaChiShip, string SL)
-        {
-            // Thực hiện câu lệnh SQL để thêm mới hóa đơn và lấy mã hóa đơn
-            int MaHD;
-            string query = "INSERT INTO HoaDon (MaKH, MaNV, DiaChiShip) VALUES (@MaKH, @MaNV, @DiaChiShip);" +
-                           "SELECT SCOPE_IDENTITY();";
-
-            using (SqlConnection conn = new SqlConnection(str))
-            using (SqlCommand cmd = new SqlCommand(query, conn))
-            {
-                cmd.Parameters.AddWithValue("@MaKH", MaKH);
-                cmd.Parameters.AddWithValue("@MaNV", MaNV);
-                cmd.Parameters.AddWithValue("@DiaChiShip", diaChiShip); // Sử dụng DiaChiShip thay vì DiaChi
-
-                conn.Open();
-                MaHD = Convert.ToInt32(cmd.ExecuteScalar());
-            }
-            //Thêm chi tiết hóa đơn
-            using (SqlConnection conn = new SqlConnection(str))
-            using (SqlCommand cmd = new SqlCommand("INSERT INTO ChiTietHoaDon (MaHD, MaSP, SoLuong) VALUES (@MaHD, @MaSP, @SoLuong)", conn))
-            {
-                cmd.Parameters.AddWithValue("@MaHD", MaHD);
-                cmd.Parameters.AddWithValue("@MaSP", MaSP);
-                cmd.Parameters.AddWithValue("@SoLuong", SL);
-
-                conn.Open();
-                cmd.ExecuteNonQuery();
-            }
-
-        }
-
-        // Hàm làm sạch TextBox của khách hàng
-        private void LamSachTextBoxKhachHang()
-        {
-            txtTenKH.Text = "";
-            txtDiaChi.Text = "";
-            txtSdtKH.Text = "";
-        }
-
         // Hàm lấy thông tin từ TextBox
-        private void LayThongTinTextBoxKhachHang(out string tenKhachHang, out string diaChi, out string sdt, out string MaSP, out string MaNV, out string SL)
+        private void LayThongTinTextBoxKhachHang(out string MaKH, out string tenKhachHang, out string diaChi, out string sdt, out string MaSP, out string MaNV, out string SL)
         {
+            MaKH = txtMaKH.Text;
             tenKhachHang = txtTenKH.Text;
             diaChi = txtDiaChi.Text;
             sdt = txtSdtKH.Text;
@@ -411,66 +368,90 @@ namespace Quản_lý_ShowCamera
 
         private void mnuThem_Click(object sender, EventArgs e)
         {
-            string tenKhachHang, diaChi, sdt, MaSP, MaNV, SL;
+            string MaKH, tenKhachHang, diaChi, sdt, MaSP, MaNV, SL;
 
             // Lấy thông tin từ TextBox
-            LayThongTinTextBoxKhachHang(out tenKhachHang, out diaChi, out sdt, out MaSP, out MaNV, out SL);
+            LayThongTinTextBoxKhachHang(out MaKH, out tenKhachHang, out diaChi, out sdt, out MaSP, out MaNV, out SL);
 
-            // Kiểm tra xem tên khách hàng đã tồn tại hay chưa
-            DataTable resultTable = TimKiemKhachHangTheoTen(tenKhachHang);
-
-            if (resultTable.Rows.Count > 0)
+            // Kiểm tra xem tất cả các trường cần thiết có giá trị không rỗng
+            if (!string.IsNullOrEmpty(MaKH) && !string.IsNullOrEmpty(MaNV) && !string.IsNullOrEmpty(diaChi) && !string.IsNullOrEmpty(MaSP) && !string.IsNullOrEmpty(SL))
             {
-                DialogResult dialogResult = MessageBox.Show("Có vẻ chúng ta có nhiều người bị trùng tên ở đây, bạn có nằm trong số đó không?", "Thông báo", MessageBoxButtons.YesNo);
+                // Thực hiện thêm mới vào HoaDon và ChiTietHoaDon
+                try
+                {
+                    // Thêm mới vào HoaDon
+                    string queryHoaDon = "INSERT INTO HoaDon (MaKH, MaNV, DiaChiShip) VALUES (@MaKH, @MaNV, @DiaChiShip);" +
+                                         "SELECT SCOPE_IDENTITY();";
 
-                if (dialogResult == DialogResult.Yes)
-                {
-                    // Mở FrmTrungTenKH và truyền dữ liệu từ Form1
-                    FrmTrungTenKH frmTrungTenKH = new FrmTrungTenKH(resultTable);
-                    frmTrungTenKH.LayDuLieuForm1(txtTenSP.Text, txtTenNV.Text, txtSoLuong.Text, txtMaSP.Text, txtMaNV.Text);
-                    frmTrungTenKH.ShowDialog();
+                    int MaHD;
+
+                    using (SqlConnection conn = new SqlConnection(str))
+                    using (SqlCommand cmd = new SqlCommand(queryHoaDon, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaKH", MaKH);
+                        cmd.Parameters.AddWithValue("@MaNV", MaNV);
+                        cmd.Parameters.AddWithValue("@DiaChiShip", diaChi);
+
+                        conn.Open();
+                        MaHD = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+
+                    // Thêm mới vào ChiTietHoaDon
+                    using (SqlConnection conn = new SqlConnection(str))
+                    using (SqlCommand cmd = new SqlCommand("INSERT INTO ChiTietHoaDon (MaHD, MaSP, SoLuong) VALUES (@MaHD, @MaSP, @SoLuong)", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaHD", MaHD);
+                        cmd.Parameters.AddWithValue("@MaSP", MaSP);
+                        cmd.Parameters.AddWithValue("@SoLuong", SL);
+
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    // Cập nhật TonKho của SanPham
+                    int soLuong = int.Parse(SL);
+
+                    // Truy vấn TonKho hiện tại từ cơ sở dữ liệu
+                    string queryTonKho = "SELECT TonKhoSP FROM SanPham WHERE MaSP = @MaSP";
+
+                    using (SqlConnection conn = new SqlConnection(str))
+                    using (SqlCommand cmd = new SqlCommand(queryTonKho, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaSP", MaSP);
+
+                        conn.Open();
+                        int tonKhoHienTai = Convert.ToInt32(cmd.ExecuteScalar());
+
+                        // Trừ đi số lượng đã bán
+                        int tonKhoMoi = tonKhoHienTai - soLuong;
+
+                        // Cập nhật giá trị mới vào cơ sở dữ liệu
+                        string queryUpdateTonKho = "UPDATE SanPham SET TonKhoSP = @TonKhoMoi WHERE MaSP = @MaSP";
+
+                        using (SqlCommand updateCmd = new SqlCommand(queryUpdateTonKho, conn))
+                        {
+                            updateCmd.Parameters.AddWithValue("@TonKhoMoi", tonKhoMoi);
+                            updateCmd.Parameters.AddWithValue("@MaSP", MaSP);
+
+                            updateCmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Thêm mới thành công!");
+                    txtTenSP.Text = "";
+                    txtTonKho.Text = "";
                 }
-                // Nếu chọn NO thì 
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Có vẻ đây là một cái tên phổ biến ?", "Thông báo", MessageBoxButtons.OK);
-                    int MaKH = ThemMoiKhachHang(tenKhachHang, diaChi, sdt);
-                    ThemHoaDon_ChiTietHoaDon(MaKH, MaSP, MaNV, diaChi, SL);
-                    khachhang();
-                    lblTieuDe.Text = "Khách hàng";
-                    LamSachTextBoxKhachHang();
+                    MessageBox.Show("Lỗi khi thêm mới: " + ex.Message);
                 }
             }
             else
             {
-                MessageBox.Show("Chào mừng bạn đến với chúng tôi, hồ sơ khách hàng đã được tạo!!!", "Thông báo", MessageBoxButtons.OK);
-                int MaKH = ThemMoiKhachHang(tenKhachHang, diaChi, sdt);
-                ThemHoaDon_ChiTietHoaDon(MaKH, MaSP, MaNV, diaChi, SL);
-                khachhang();
-                lblTieuDe.Text = "Khách hàng";
-                LamSachTextBoxKhachHang();
+                MessageBox.Show("Vui lòng chọn đầy đủ thông tin cần thiết.");
             }
         }
 
-        // Hàm tìm kiếm khách hàng theo tên
-        private DataTable TimKiemKhachHangTheoTen(string tenKhachHang)
-        {
-            // Sử dụng tham số để tránh tình trạng SQL injection
-            command = connection.CreateCommand();
-            command.CommandText = "SELECT * FROM KhachHang WHERE TenLienHe LIKE @TenLienHe";
-            command.Parameters.AddWithValue("@TenLienHe", "%" + tenKhachHang + "%");
-
-            SqlDataAdapter adapter = new SqlDataAdapter(command);
-            DataTable resultTable = new DataTable();
-            adapter.Fill(resultTable);
-
-            return resultTable;
-        }
-
-        private void themHoaDon_themChiTietHoaDon()
-        {
-
-        }
 
         //=========================================================================================================================================================================================
 
@@ -480,6 +461,16 @@ namespace Quản_lý_ShowCamera
         }
 
         private void txtMaNV_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTonKho_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -47,7 +47,6 @@ GO
 
 CREATE TABLE KhachHang(
 	MaKH INT IDENTITY(1, 1) NOT NULL PRIMARY KEY,
-	PassKH VARCHAR(255),
 	TenLienHe NVARCHAR(30) NOT NULL,
 	DiaChi NVARCHAR(60),
 	Sdt NVARCHAR(24)
@@ -77,16 +76,16 @@ GO
 
 INSERT INTO KhachHang (PassKH, TenLienHe, DiaChi, Sdt)
 VALUES 
-    ('PassKH1', N'Khách Hàng 1', N'Địa Chỉ 1', '0123456789'),
-    ('PassKH2', N'Khách Hàng 2', N'Địa Chỉ 2', '0234567890'),
-    ('PassKH3', N'Khách Hàng 3', N'Địa Chỉ 3', '0345678901'),
-    ('PassKH4', N'Khách Hàng 4', N'Địa Chỉ 4', '0456789012'),
-    ('PassKH5', N'Khách Hàng 5', N'Địa Chỉ 5', '0567890123'),
-    ('PassKH6', N'Khách Hàng 6', N'Địa Chỉ 6', '0678901234'),
-    ('PassKH7', N'Khách Hàng 7', N'Địa Chỉ 7', '0789012345'),
-    ('PassKH8', N'Khách Hàng 8', N'Địa Chỉ 8', '0890123456'),
-    ('PassKH9', N'Khách Hàng 9', N'Địa Chỉ 9', '0901234567'),
-    ('PassKH10', N'Khách Hàng 10', N'Địa Chỉ 10', '0912345678');
+    (N'Khách Hàng 1', N'Địa Chỉ 1', '0123456789'),
+    (N'Khách Hàng 2', N'Địa Chỉ 2', '0234567890'),
+    (N'Khách Hàng 3', N'Địa Chỉ 3', '0345678901'),
+    (N'Khách Hàng 4', N'Địa Chỉ 4', '0456789012'),
+    (N'Khách Hàng 5', N'Địa Chỉ 5', '0567890123'),
+    (N'Khách Hàng 6', N'Địa Chỉ 6', '0678901234'),
+    (N'Khách Hàng 7', N'Địa Chỉ 7', '0789012345'),
+    (N'Khách Hàng 8', N'Địa Chỉ 8', '0890123456'),
+    (N'Khách Hàng 9', N'Địa Chỉ 9', '0901234567'),
+    (N'Khách Hàng 10', N'Địa Chỉ 10', '0912345678');
 
 	INSERT INTO SanPham (TenSP, MaTL, DonGiaSP, GiamGia, TonKhoSP, NhanSanXuat)
 VALUES 
