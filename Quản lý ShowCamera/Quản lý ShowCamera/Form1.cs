@@ -201,8 +201,8 @@ namespace Quản_lý_ShowCamera
 
         private void mnuNhanVien_Click(object sender, EventArgs e)
         {
-            nhanvien();
-            lblTieuDe.Text = "Nhân viên";
+            FrmNhanVien frm = new FrmNhanVien();
+            frm.ShowDialog();
         }
 
         private void dgvHoaDon_CellContentClick(object sender, DataGridViewCellEventArgs e)
