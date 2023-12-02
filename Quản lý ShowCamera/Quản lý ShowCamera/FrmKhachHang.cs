@@ -190,28 +190,29 @@ namespace Quản_lý_ShowCamera
 
         private void mnuXoa_Click(object sender, EventArgs e)
         {
-            if (txtMaKH.Text == "")
+            if (string.IsNullOrWhiteSpace(txtMaKH.Text))
             {
-                MessageBox.Show("Vui chọn khách hàng cần xóa!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Vui lòng chọn khách hàng cần xóa!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             string MaKH = txtMaKH.Text;
 
             // Kiểm tra xem MaKH có giá trị không rỗng
-            if (txtMaKH.Text != "")
+            if (!string.IsNullOrWhiteSpace(MaKH))
             {
+                // Kiểm tra xem MaKH có tồn tại trong HoaDon hay không
+                if (KiemTraTonTaiMaKHTrongHoaDon(MaKH))
+                {
+                    MessageBox.Show("Không thể xóa khách hàng vì Mã KH này đang tồn tại trong các hóa đơn.");
+                    return;
+                }
+
                 // Hiển thị hộp thoại xác nhận xóa
                 DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa khách hàng này?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
-                    // Thực hiện xóa từ bảng ChiTietHoaDon
-                    XoaChiTietHoaDon(MaKH);
-
-                    // Thực hiện xóa từ bảng HoaDon
-                    XoaHoaDon(MaKH);
-
                     // Thực hiện xóa từ bảng KhachHang
                     XoaKhachHang(MaKH);
 
@@ -221,73 +222,43 @@ namespace Quản_lý_ShowCamera
             }
         }
 
-        private void XoaChiTietHoaDon(string maKH)
+        // Hàm kiểm tra xem MaKH có tồn tại trong HoaDon hay không
+        private bool KiemTraTonTaiMaKHTrongHoaDon(string maKH)
         {
-            try
-            {
-                // Thực hiện xóa các chi tiết hóa đơn liên quan đến mã khách hàng
-                string queryXoaCTHD = "DELETE FROM ChiTietHoaDon WHERE MaHD IN (SELECT MaHD FROM HoaDon WHERE MaKH = @MaKH)";
-
-                using (SqlConnection conn = new SqlConnection(str))
-                using (SqlCommand cmd = new SqlCommand(queryXoaCTHD, conn))
-                {
-                    cmd.Parameters.AddWithValue("@MaKH", maKH);
-
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi xóa chi tiết hóa đơn: " + ex.Message);
-            }
-        }
-
-        private void XoaHoaDon(string maKH)
-        {
-            try
-            {
-                // Thực hiện xóa hóa đơn liên quan đến mã khách hàng
-                string queryXoaHD = "DELETE FROM HoaDon WHERE MaKH = @MaKH";
-
-                using (SqlConnection conn = new SqlConnection(str))
-                using (SqlCommand cmd = new SqlCommand(queryXoaHD, conn))
-                {
-                    cmd.Parameters.AddWithValue("@MaKH", maKH);
-
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi xóa hóa đơn: " + ex.Message);
-            }
+            command = connection.CreateCommand();
+            command.CommandText = "SELECT COUNT(*) FROM HoaDon WHERE MaKH = @MaKH";
+            command.Parameters.AddWithValue("@MaKH", maKH);
+            int count = (int)command.ExecuteScalar();
+            return count > 0;
         }
 
         private void XoaKhachHang(string maKH)
         {
             try
             {
-                // Thực hiện xóa khách hàng
-                string queryXoaKH = "DELETE FROM KhachHang WHERE MaKH = @MaKH";
-
                 using (SqlConnection conn = new SqlConnection(str))
-                using (SqlCommand cmd = new SqlCommand(queryXoaKH, conn))
+                using (SqlCommand cmd = new SqlCommand("DELETE FROM KhachHang WHERE MaKH = @MaKH", conn))
                 {
-                    cmd.Parameters.AddWithValue("@MaKH", maKH);
-
                     conn.Open();
-                    cmd.ExecuteNonQuery();
-                }
+                    cmd.Parameters.AddWithValue("@MaKH", maKH);
+                    int rowsAffected = cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Xóa thành công!");
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Xóa thành công!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không có khách hàng nào được xóa. Mã KH không tồn tại.");
+                    }
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi xóa khách hàng: " + ex.Message);
             }
         }
+
 
         // Sửa =========================================================================================================
 

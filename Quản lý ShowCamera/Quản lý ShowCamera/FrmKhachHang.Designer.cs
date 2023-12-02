@@ -214,7 +214,7 @@
             this.dgvMain.Name = "dgvMain";
             this.dgvMain.Size = new System.Drawing.Size(1339, 462);
             this.dgvMain.TabIndex = 4;
-            this.dgvMain.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMain_CellContentClick);
+            this.dgvMain.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMain_CellContentClick);
             // 
             // FrmKhachHang
             // 

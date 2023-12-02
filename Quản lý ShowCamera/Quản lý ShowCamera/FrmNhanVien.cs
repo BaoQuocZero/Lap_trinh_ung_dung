@@ -56,18 +56,255 @@ namespace Quản_lý_ShowCamera
 
         private void mnuThem_Click(object sender, EventArgs e)
         {
+            // Kiểm tra xem các TextBox có giá trị không rỗng
+            if (txtMatKhau.Text != "" &&
+                txtHo.Text != "" && txtTen.Text != "" &&
+                txtDiaChi.Text != "" && txtSdtNV.Text != "")
+            {
+                // Lấy thông tin từ các TextBox
+                string maNV = txtMaNV.Text;
+                string matKhau = txtMatKhau.Text;
+                string ho = txtHo.Text;
+                string ten = txtTen.Text;
+                string diaChi = txtDiaChi.Text;
+                string sdt = txtSdtNV.Text;
 
+                try
+                {
+                    command = connection.CreateCommand();
+
+                    // Kiểm tra nếu txtMaNV không rỗng
+                    if (maNV != "")
+                    {
+                        // Kiểm tra xem mã nhân viên đã tồn tại hay không
+                        if (IsMaNVTonTai(maNV))
+                        {
+                            // Hiển thị thông báo và xác nhận cập nhật
+                            DialogResult result = MessageBox.Show("Mã NV đã tồn tại. Bạn có muốn cập nhật mã nhân viên này không?", "Cập Nhật Mã NV", MessageBoxButtons.YesNo);
+
+                            if (result == DialogResult.Yes)
+                            {
+                                command = connection.CreateCommand();
+                                command.CommandText = "UPDATE NhanVien SET PassNV = @MatKhau, HoLotNV = @Ho, TenNV = @Ten, DiaChiNV = @DiaChi, SdtNV = @Sdt WHERE MaNV = @MaNV";
+
+                                // Thêm tham số để tránh SQL Injection
+                                command.Parameters.AddWithValue("@MatKhau", matKhau);
+                                command.Parameters.AddWithValue("@Ho", ho);
+                                command.Parameters.AddWithValue("@Ten", ten);
+                                command.Parameters.AddWithValue("@DiaChi", diaChi);
+                                command.Parameters.AddWithValue("@Sdt", sdt);
+                                command.Parameters.AddWithValue("@MaNV", maNV);
+
+                                // Thực thi truy vấn
+                                command.ExecuteNonQuery();
+
+                                // Cập nhật DataGridView
+                                nhanvien();
+
+                                // Hiển thị thông báo thành công
+                                MessageBox.Show("Đã cập nhật thông tin nhân viên thành công.");
+                            }
+                            else if (result == DialogResult.No)
+                            {
+                                // Thêm mới nhân viên nếu chọn NO
+                                command.CommandText = "INSERT INTO NhanVien (MaNV, PassNV, HoLotNV, TenNV, DiaChiNV, SdtNV) VALUES (@MaNV, @MatKhau, @Ho, @Ten, @DiaChi, @Sdt)";
+                                command.Parameters.AddWithValue("@MaNV", maNV);
+
+                                // Thêm tham số để tránh SQL Injection
+                                command.Parameters.AddWithValue("@MatKhau", matKhau);
+                                command.Parameters.AddWithValue("@Ho", ho);
+                                command.Parameters.AddWithValue("@Ten", ten);
+                                command.Parameters.AddWithValue("@DiaChi", diaChi);
+                                command.Parameters.AddWithValue("@Sdt", sdt);
+
+                                // Thực thi truy vấn
+                                command.ExecuteNonQuery();
+
+                                // Cập nhật DataGridView
+                                nhanvien();
+
+                                // Hiển thị thông báo thành công
+                                MessageBox.Show("Đã thêm mới thông tin nhân viên thành công.");
+                            }
+                        }
+                        else
+                        {
+                            // Nếu mã nhân viên không tồn tại, thực hiện thêm mới
+                            command.CommandText = "INSERT INTO NhanVien (MaNV, PassNV, HoLotNV, TenNV, DiaChiNV, SdtNV) VALUES (@MaNV, @MatKhau, @Ho, @Ten, @DiaChi, @Sdt)";
+                            command.Parameters.AddWithValue("@MaNV", maNV);
+
+                            // Thêm tham số để tránh SQL Injection
+                            command.Parameters.AddWithValue("@MatKhau", matKhau);
+                            command.Parameters.AddWithValue("@Ho", ho);
+                            command.Parameters.AddWithValue("@Ten", ten);
+                            command.Parameters.AddWithValue("@DiaChi", diaChi);
+                            command.Parameters.AddWithValue("@Sdt", sdt);
+
+                            // Thực thi truy vấn
+                            command.ExecuteNonQuery();
+
+                            // Cập nhật DataGridView
+                            nhanvien();
+
+                            // Hiển thị thông báo thành công
+                            MessageBox.Show("Đã thêm mới thông tin nhân viên thành công.");
+                        }
+                    }
+                    else
+                    {
+                        // Nếu txtMaNV rỗng, thêm mới nhân viên
+                        command.CommandText = "INSERT INTO NhanVien (PassNV, HoLotNV, TenNV, DiaChiNV, SdtNV) VALUES (@MatKhau, @Ho, @Ten, @DiaChi, @Sdt)";
+
+                        // Thêm tham số để tránh SQL Injection
+                        command.Parameters.AddWithValue("@MatKhau", matKhau);
+                        command.Parameters.AddWithValue("@Ho", ho);
+                        command.Parameters.AddWithValue("@Ten", ten);
+                        command.Parameters.AddWithValue("@DiaChi", diaChi);
+                        command.Parameters.AddWithValue("@Sdt", sdt);
+
+                        // Thực thi truy vấn
+                        command.ExecuteNonQuery();
+
+                        // Cập nhật DataGridView
+                        nhanvien();
+
+                        // Hiển thị thông báo thành công
+                        MessageBox.Show("Đã thêm mới thông tin nhân viên thành công.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Xử lý lỗi nếu có
+                    MessageBox.Show("Lỗi: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin nhân viên.");
+            }
         }
+
+        // Hàm kiểm tra xem mã nhân viên đã tồn tại hay không
+        private bool IsMaNVTonTai(string maNV)
+        {
+            command = connection.CreateCommand();
+            command.CommandText = "SELECT COUNT(*) FROM NhanVien WHERE MaNV = @MaNV";
+            command.Parameters.AddWithValue("@MaNV", maNV);
+            int count = (int)command.ExecuteScalar();
+            return count > 0;
+        }
+
 
         private void mnuXoa_Click(object sender, EventArgs e)
         {
+            // Kiểm tra xem txtMaNV có giá trị không rỗng
+            if (!string.IsNullOrWhiteSpace(txtMaNV.Text))
+            {
+                string maNV = txtMaNV.Text;
 
+                try
+                {
+                    // Kiểm tra xem có tồn tại MaNV trong HoaDon hay không
+                    if (IsMaNVExistInHoaDon(maNV))
+                    {
+                        MessageBox.Show("Không thể xóa nhân viên vì Mã NV này đang tồn tại trong các hóa đơn.");
+                        return;
+                    }
+
+                    command = connection.CreateCommand();
+                    command.CommandText = "DELETE FROM NhanVien WHERE MaNV = @MaNV";
+                    command.Parameters.AddWithValue("@MaNV", maNV);
+
+                    // Thực thi truy vấn
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        // Cập nhật DataGridView
+                        nhanvien();
+
+                        // Hiển thị thông báo thành công
+                        MessageBox.Show("Đã xóa nhân viên có Mã NV " + maNV + " thành công.");
+                    }
+                    else
+                    {
+                        // Hiển thị thông báo nếu không tìm thấy nhân viên để xóa
+                        MessageBox.Show("Không tìm thấy nhân viên có Mã NV " + maNV + ".");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Xử lý lỗi nếu có
+                    MessageBox.Show("Lỗi: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng nhập Mã NV để xóa.");
+            }
         }
+
+        // Hàm kiểm tra xem MaNV có tồn tại trong HoaDon hay không
+        private bool IsMaNVExistInHoaDon(string maNV)
+        {
+            command = connection.CreateCommand();
+            command.CommandText = "SELECT COUNT(*) FROM HoaDon WHERE MaNV = @MaNV";
+            command.Parameters.AddWithValue("@MaNV", maNV);
+            int count = (int)command.ExecuteScalar();
+            return count > 0;
+        }
+
+
 
         private void mnuSua_Click(object sender, EventArgs e)
         {
+            // Kiểm tra xem các TextBox có giá trị không rỗng
+            if (!string.IsNullOrWhiteSpace(txtMaNV.Text) && !string.IsNullOrWhiteSpace(txtMatKhau.Text) &&
+                !string.IsNullOrWhiteSpace(txtHo.Text) && !string.IsNullOrWhiteSpace(txtTen.Text) &&
+                !string.IsNullOrWhiteSpace(txtDiaChi.Text) && !string.IsNullOrWhiteSpace(txtSdtNV.Text))
+            {
+                // Lấy thông tin từ các TextBox
+                string maNV = txtMaNV.Text;
+                string matKhau = txtMatKhau.Text;
+                string ho = txtHo.Text;
+                string ten = txtTen.Text;
+                string diaChi = txtDiaChi.Text;
+                string sdt = txtSdtNV.Text;
 
+                try
+                {
+                    command = connection.CreateCommand();
+                    command.CommandText = "UPDATE NhanVien SET PassNV = @MatKhau, HoLotNV = @Ho, TenNV = @Ten, DiaChiNV = @DiaChi, SdtNV = @Sdt WHERE MaNV = @MaNV";
+
+                    // Thêm tham số để tránh SQL Injection
+                    command.Parameters.AddWithValue("@MatKhau", matKhau);
+                    command.Parameters.AddWithValue("@Ho", ho);
+                    command.Parameters.AddWithValue("@Ten", ten);
+                    command.Parameters.AddWithValue("@DiaChi", diaChi);
+                    command.Parameters.AddWithValue("@Sdt", sdt);
+                    command.Parameters.AddWithValue("@MaNV", maNV);
+
+                    // Thực thi truy vấn
+                    command.ExecuteNonQuery();
+
+                    // Cập nhật DataGridView
+                    nhanvien();
+
+                    // Hiển thị thông báo thành công
+                    MessageBox.Show("Đã cập nhật thông tin nhân viên thành công.");
+                }
+                catch (Exception ex)
+                {
+                    // Xử lý lỗi nếu có
+                    MessageBox.Show("Lỗi: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin nhân viên.");
+            }
         }
+
 
         private void mnuThoat_Click(object sender, EventArgs e)
         {

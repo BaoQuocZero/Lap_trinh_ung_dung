@@ -32,11 +32,15 @@
             this.pnMain = new System.Windows.Forms.FlowLayoutPanel();
             this.lblTieuDe = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblMatKhau = new System.Windows.Forms.Label();
+            this.txtMatKhau = new System.Windows.Forms.TextBox();
             this.lblHo = new System.Windows.Forms.Label();
             this.txtHo = new System.Windows.Forms.TextBox();
             this.txtMaNV = new System.Windows.Forms.TextBox();
             this.lblTen = new System.Windows.Forms.Label();
             this.txtTen = new System.Windows.Forms.TextBox();
+            this.lblDiaChi = new System.Windows.Forms.Label();
+            this.txtDiaChi = new System.Windows.Forms.TextBox();
             this.lblSdtNV = new System.Windows.Forms.Label();
             this.txtSdtNV = new System.Windows.Forms.TextBox();
             this.pnButton = new System.Windows.Forms.FlowLayoutPanel();
@@ -46,10 +50,6 @@
             this.mnuSua = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuThoat = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvMain = new System.Windows.Forms.DataGridView();
-            this.lblDiaChi = new System.Windows.Forms.Label();
-            this.txtDiaChi = new System.Windows.Forms.TextBox();
-            this.lblMatKhau = new System.Windows.Forms.Label();
-            this.txtMatKhau = new System.Windows.Forms.TextBox();
             this.pnMain.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.pnButton.SuspendLayout();
@@ -96,6 +96,23 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1339, 60);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
+            // lblMatKhau
+            // 
+            this.lblMatKhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMatKhau.Location = new System.Drawing.Point(3, 0);
+            this.lblMatKhau.Name = "lblMatKhau";
+            this.lblMatKhau.Size = new System.Drawing.Size(126, 23);
+            this.lblMatKhau.TabIndex = 34;
+            this.lblMatKhau.Text = "Mật khẩu";
+            this.lblMatKhau.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtMatKhau
+            // 
+            this.txtMatKhau.Location = new System.Drawing.Point(135, 3);
+            this.txtMatKhau.Name = "txtMatKhau";
+            this.txtMatKhau.Size = new System.Drawing.Size(267, 20);
+            this.txtMatKhau.TabIndex = 35;
+            // 
             // lblHo
             // 
             this.lblHo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -137,6 +154,23 @@
             this.txtTen.Name = "txtTen";
             this.txtTen.Size = new System.Drawing.Size(267, 20);
             this.txtTen.TabIndex = 7;
+            // 
+            // lblDiaChi
+            // 
+            this.lblDiaChi.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDiaChi.Location = new System.Drawing.Point(3, 26);
+            this.lblDiaChi.Name = "lblDiaChi";
+            this.lblDiaChi.Size = new System.Drawing.Size(126, 23);
+            this.lblDiaChi.TabIndex = 32;
+            this.lblDiaChi.Text = "Địa chỉ";
+            this.lblDiaChi.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtDiaChi
+            // 
+            this.txtDiaChi.Location = new System.Drawing.Point(135, 29);
+            this.txtDiaChi.Name = "txtDiaChi";
+            this.txtDiaChi.Size = new System.Drawing.Size(267, 20);
+            this.txtDiaChi.TabIndex = 33;
             // 
             // lblSdtNV
             // 
@@ -219,41 +253,7 @@
             this.dgvMain.Name = "dgvMain";
             this.dgvMain.Size = new System.Drawing.Size(1339, 462);
             this.dgvMain.TabIndex = 4;
-            this.dgvMain.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMain_CellContentClick);
-            // 
-            // lblDiaChi
-            // 
-            this.lblDiaChi.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDiaChi.Location = new System.Drawing.Point(3, 26);
-            this.lblDiaChi.Name = "lblDiaChi";
-            this.lblDiaChi.Size = new System.Drawing.Size(126, 23);
-            this.lblDiaChi.TabIndex = 32;
-            this.lblDiaChi.Text = "Địa chỉ";
-            this.lblDiaChi.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtDiaChi
-            // 
-            this.txtDiaChi.Location = new System.Drawing.Point(135, 29);
-            this.txtDiaChi.Name = "txtDiaChi";
-            this.txtDiaChi.Size = new System.Drawing.Size(267, 20);
-            this.txtDiaChi.TabIndex = 33;
-            // 
-            // lblMatKhau
-            // 
-            this.lblMatKhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMatKhau.Location = new System.Drawing.Point(3, 0);
-            this.lblMatKhau.Name = "lblMatKhau";
-            this.lblMatKhau.Size = new System.Drawing.Size(126, 23);
-            this.lblMatKhau.TabIndex = 34;
-            this.lblMatKhau.Text = "Mật khẩu";
-            this.lblMatKhau.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtMatKhau
-            // 
-            this.txtMatKhau.Location = new System.Drawing.Point(135, 3);
-            this.txtMatKhau.Name = "txtMatKhau";
-            this.txtMatKhau.Size = new System.Drawing.Size(267, 20);
-            this.txtMatKhau.TabIndex = 35;
+            this.dgvMain.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMain_CellContentClick);
             // 
             // FrmNhanVien
             // 

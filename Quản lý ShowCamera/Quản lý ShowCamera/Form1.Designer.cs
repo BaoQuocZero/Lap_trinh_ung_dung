@@ -34,6 +34,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblTenKH = new System.Windows.Forms.Label();
             this.txtTenKH = new System.Windows.Forms.TextBox();
+            this.txtMaKH = new System.Windows.Forms.TextBox();
             this.lblDiaChi = new System.Windows.Forms.Label();
             this.txtDiaChi = new System.Windows.Forms.TextBox();
             this.lblSdtKH = new System.Windows.Forms.Label();
@@ -46,6 +47,8 @@
             this.txtMaNV = new System.Windows.Forms.TextBox();
             this.lblSoLuong = new System.Windows.Forms.Label();
             this.txtSoLuong = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtTonKho = new System.Windows.Forms.TextBox();
             this.pnButton = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mnuThem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,9 +62,6 @@
             this.mnuSanPham = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTheLoai = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuThongKe = new System.Windows.Forms.ToolStripMenuItem();
-            this.txtMaKH = new System.Windows.Forms.TextBox();
-            this.txtTonKho = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.pnMain.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.pnButton.SuspendLayout();
@@ -134,6 +134,15 @@
             this.txtTenKH.Size = new System.Drawing.Size(234, 20);
             this.txtTenKH.TabIndex = 1;
             this.txtTenKH.TextChanged += new System.EventHandler(this.txtTenKH_TextChanged);
+            // 
+            // txtMaKH
+            // 
+            this.txtMaKH.Location = new System.Drawing.Point(375, 3);
+            this.txtMaKH.Name = "txtMaKH";
+            this.txtMaKH.ReadOnly = true;
+            this.txtMaKH.Size = new System.Drawing.Size(26, 20);
+            this.txtMaKH.TabIndex = 31;
+            this.txtMaKH.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
             // 
             // lblDiaChi
             // 
@@ -247,6 +256,25 @@
             this.txtSoLuong.TabIndex = 28;
             this.txtSoLuong.TextChanged += new System.EventHandler(this.txtSoLuong_TextChanged);
             // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1125, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 23);
+            this.label1.TabIndex = 33;
+            this.label1.Text = "Tồn kho";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtTonKho
+            // 
+            this.txtTonKho.Location = new System.Drawing.Point(1186, 29);
+            this.txtTonKho.Name = "txtTonKho";
+            this.txtTonKho.ReadOnly = true;
+            this.txtTonKho.Size = new System.Drawing.Size(26, 20);
+            this.txtTonKho.TabIndex = 32;
+            this.txtTonKho.TextChanged += new System.EventHandler(this.txtTonKho_TextChanged);
+            // 
             // pnButton
             // 
             this.pnButton.Controls.Add(this.menuStrip1);
@@ -291,7 +319,7 @@
             this.dgvMain.Name = "dgvMain";
             this.dgvMain.Size = new System.Drawing.Size(1339, 462);
             this.dgvMain.TabIndex = 4;
-            this.dgvMain.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHoaDon_CellContentClick);
+            this.dgvMain.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHoaDon_CellContentClick);
             // 
             // menuStrip2
             // 
@@ -358,34 +386,6 @@
             this.mnuThongKe.Size = new System.Drawing.Size(68, 20);
             this.mnuThongKe.Text = "Thống kê";
             this.mnuThongKe.Click += new System.EventHandler(this.thốngKêToolStripMenuItem_Click);
-            // 
-            // txtMaKH
-            // 
-            this.txtMaKH.Location = new System.Drawing.Point(375, 3);
-            this.txtMaKH.Name = "txtMaKH";
-            this.txtMaKH.ReadOnly = true;
-            this.txtMaKH.Size = new System.Drawing.Size(26, 20);
-            this.txtMaKH.TabIndex = 31;
-            this.txtMaKH.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
-            // 
-            // txtTonKho
-            // 
-            this.txtTonKho.Location = new System.Drawing.Point(1186, 29);
-            this.txtTonKho.Name = "txtTonKho";
-            this.txtTonKho.ReadOnly = true;
-            this.txtTonKho.Size = new System.Drawing.Size(26, 20);
-            this.txtTonKho.TabIndex = 32;
-            this.txtTonKho.TextChanged += new System.EventHandler(this.txtTonKho_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1125, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 23);
-            this.label1.TabIndex = 33;
-            this.label1.Text = "Tồn kho";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // FrmMain
             // 
