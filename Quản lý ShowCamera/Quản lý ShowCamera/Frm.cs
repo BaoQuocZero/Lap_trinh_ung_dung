@@ -190,8 +190,8 @@ namespace Quản_lý_ShowCamera
 
         private void mnuSanPham_Click(object sender, EventArgs e)
         {
-            sanpham();
-            lblTieuDe.Text = "Sản phẩm";
+            FrmSanPham frm = new FrmSanPham();
+            frm.ShowDialog();
         }
 
         private void dgvNhanVien_CellContentClick(object sender, DataGridViewCellEventArgs e)
