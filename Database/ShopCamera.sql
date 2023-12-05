@@ -1,14 +1,14 @@
 ﻿CREATE DATABASE ShopCamera
 ON
 (	NAME = 'ShopCamera_data',
-	FILENAME = 'C:\ShopCamera_data.mdf'
+	FILENAME = 'C:\Code\ShopCamera_data.mdf'
 	--SIZE = 10MB,
 	--MAXSIZE = 100MB,
 	--FILEGROWTH = 5MB
 )
 LOG ON
 (	NAME = 'ShopCamera_log',
-	FILENAME = 'C:\ShopCamera_data.ldf'
+	FILENAME = 'C:\Code\ShopCamera_data.ldf'
 	--SIZE = 5MB,
 	--MAXSIZE = 50MB,
 	--FILEGROWTH = 5MB
@@ -74,7 +74,7 @@ CREATE TABLE ChiTietHoaDon(
 GO
 --Cụm thêm thông tin cho CSDL ==================================================================================================
 
-INSERT INTO KhachHang (PassKH, TenLienHe, DiaChi, Sdt)
+INSERT INTO KhachHang (TenLienHe, DiaChi, Sdt)
 VALUES 
     (N'Khách Hàng 1', N'Địa Chỉ 1', '0123456789'),
     (N'Khách Hàng 2', N'Địa Chỉ 2', '0234567890'),
