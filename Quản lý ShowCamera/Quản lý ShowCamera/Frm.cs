@@ -87,7 +87,7 @@ namespace Quản_lý_ShowCamera
         void thongke()
         {
             command = connection.CreateCommand();
-            command.CommandText = "SELECT \r\n    KH.TenLienHe AS [Tên khách hàng], \r\n    COUNT(CTHD.MaSP) AS [Số sản phẩm đã mua],\r\n    SUM(SP.DonGiaSP * (1 - SP.GiamGia) * CTHD.SoLuong) AS [Số tiền đã chi]\r\nFROM KhachHang AS KH\r\nJOIN HoaDon AS HD ON KH.MaKH = HD.MaKH\r\nJOIN ChiTietHoaDon AS CTHD ON HD.MaHD = CTHD.MaHD\r\nJOIN SanPham AS SP ON CTHD.MaSP = SP.MaSP\r\nGROUP BY KH.TenLienHe;";
+            command.CommandText = "SELECT\r\n    SP.MaSP,\r\n    SP.TenSP,\r\n    SP.NhanSanXuat,\r\n    SUM(CTHD.SoLuong) AS SoLuongBan\r\nFROM\r\n    SanPham SP\r\nJOIN\r\n    ChiTietHoaDon CTHD ON SP.MaSP = CTHD.MaSP\r\nGROUP BY\r\n    SP.MaSP, SP.TenSP, SP.NhanSanXuat\r\nORDER BY\r\n    SoLuongBan DESC;";
             adapter.SelectCommand = command;
             tableThongKe.Clear();
             adapter.Fill(tableThongKe);
@@ -473,6 +473,11 @@ namespace Quản_lý_ShowCamera
         private void txtTonKho_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void mnuThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

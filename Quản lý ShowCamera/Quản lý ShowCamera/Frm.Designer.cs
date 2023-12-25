@@ -290,7 +290,7 @@
             this.mnuThoat});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(138, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(258, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -311,6 +311,7 @@
             this.mnuThoat.Name = "mnuThoat";
             this.mnuThoat.Size = new System.Drawing.Size(65, 20);
             this.mnuThoat.Text = "Thoát";
+            this.mnuThoat.Click += new System.EventHandler(this.mnuThoat_Click);
             // 
             // dgvMain
             // 
