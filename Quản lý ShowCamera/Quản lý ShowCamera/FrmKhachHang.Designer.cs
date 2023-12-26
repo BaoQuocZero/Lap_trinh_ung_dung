@@ -131,6 +131,7 @@
             this.txtDiaChi.Name = "txtDiaChi";
             this.txtDiaChi.Size = new System.Drawing.Size(267, 20);
             this.txtDiaChi.TabIndex = 7;
+            this.txtDiaChi.TextChanged += new System.EventHandler(this.txtDiaChi_TextChanged);
             // 
             // lblSdtKH
             // 
