@@ -23,9 +23,9 @@ namespace Quản_lý_ShowCamera
         DataTable tableKhachHang = new DataTable();
         DataTable tableSanPham = new DataTable();
         DataTable tableTheLoai = new DataTable();
-        DataTable tableThongKe = new DataTable();
 
-        DataTable tableKhachHangTim = new DataTable();
+        DataTable tableThongKe = new DataTable();
+        DataTable tableThongKeKH = new DataTable();
         void HoaDon()
         {
             command = connection.CreateCommand();
@@ -94,6 +94,16 @@ namespace Quản_lý_ShowCamera
             tableThongKe.Clear();
             adapter.Fill(tableThongKe);
             dgvMain.DataSource = tableThongKe;
+        }
+
+        void thongkeKH()
+        {
+            command = connection.CreateCommand();
+            command.CommandText = "SELECT \r\n    KH.MaKH,\r\n    KH.TenLienHe,\r\n    KH.DiaChi,\r\n    KH.Sdt,\r\n    SUM(ISNULL(SP.DonGiaSP * CTHD.SoLuong, 0)) AS TongChiTieu\r\nFROM \r\n    KhachHang KH\r\nLEFT JOIN \r\n    HoaDon HD ON KH.MaKH = HD.MaKH\r\nLEFT JOIN \r\n    ChiTietHoaDon CTHD ON HD.MaHD = CTHD.MaHD\r\nLEFT JOIN \r\n    SanPham SP ON CTHD.MaSP = SP.MaSP\r\nGROUP BY \r\n    KH.MaKH, KH.TenLienHe, KH.DiaChi, KH.Sdt\r\nORDER BY \r\n    TongChiTieu DESC;\r\n";
+            adapter.SelectCommand = command;
+            tableThongKeKH.Clear();
+            adapter.Fill(tableThongKeKH);
+            dgvMain.DataSource = tableThongKeKH;
         }
 
         public FrmMain()
@@ -485,6 +495,12 @@ namespace Quản_lý_ShowCamera
         private void thốngKêToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             thongke();
+            lblTieuDe.Text = "Thống kê khách hàng";
+        }
+
+        private void kháchHàngThânToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            thongkeKH();
             lblTieuDe.Text = "Thống kê khách hàng";
         }
     }

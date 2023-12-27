@@ -63,6 +63,7 @@
             this.mnuTheLoai = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuThongKe = new System.Windows.Forms.ToolStripMenuItem();
             this.thốngKêToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kháchHàngThânToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnMain.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.pnButton.SuspendLayout();
@@ -340,69 +341,89 @@
             // 
             // mnuHoaDon
             // 
+            this.mnuHoaDon.Image = ((System.Drawing.Image)(resources.GetObject("mnuHoaDon.Image")));
             this.mnuHoaDon.Name = "mnuHoaDon";
-            this.mnuHoaDon.Size = new System.Drawing.Size(66, 20);
+            this.mnuHoaDon.Size = new System.Drawing.Size(82, 20);
             this.mnuHoaDon.Text = "Hóa Đơn";
             this.mnuHoaDon.Click += new System.EventHandler(this.mnuHoaDon_Click);
             // 
             // mnuChiTietHoaDon
             // 
+            this.mnuChiTietHoaDon.Image = ((System.Drawing.Image)(resources.GetObject("mnuChiTietHoaDon.Image")));
             this.mnuChiTietHoaDon.Name = "mnuChiTietHoaDon";
-            this.mnuChiTietHoaDon.Size = new System.Drawing.Size(109, 20);
+            this.mnuChiTietHoaDon.Size = new System.Drawing.Size(125, 20);
             this.mnuChiTietHoaDon.Text = "Chi Tiết Hóa Đơn";
             this.mnuChiTietHoaDon.Click += new System.EventHandler(this.chiTiếtHóaĐơnToolStripMenuItem_Click);
             // 
             // mnuKhachHang
             // 
+            this.mnuKhachHang.Image = ((System.Drawing.Image)(resources.GetObject("mnuKhachHang.Image")));
             this.mnuKhachHang.Name = "mnuKhachHang";
-            this.mnuKhachHang.Size = new System.Drawing.Size(84, 20);
+            this.mnuKhachHang.Size = new System.Drawing.Size(100, 20);
             this.mnuKhachHang.Text = "Khách Hàng";
             this.mnuKhachHang.Click += new System.EventHandler(this.mnuKhachHang_Click);
             // 
             // mnuNhanVien
             // 
+            this.mnuNhanVien.Image = ((System.Drawing.Image)(resources.GetObject("mnuNhanVien.Image")));
             this.mnuNhanVien.Name = "mnuNhanVien";
-            this.mnuNhanVien.Size = new System.Drawing.Size(74, 20);
+            this.mnuNhanVien.Size = new System.Drawing.Size(90, 20);
             this.mnuNhanVien.Text = "Nhân Viên";
             this.mnuNhanVien.Click += new System.EventHandler(this.mnuNhanVien_Click);
             // 
             // mnuSanPham
             // 
+            this.mnuSanPham.Image = ((System.Drawing.Image)(resources.GetObject("mnuSanPham.Image")));
             this.mnuSanPham.Name = "mnuSanPham";
-            this.mnuSanPham.Size = new System.Drawing.Size(72, 20);
+            this.mnuSanPham.Size = new System.Drawing.Size(88, 20);
             this.mnuSanPham.Text = "Sản Phẩm";
             this.mnuSanPham.Click += new System.EventHandler(this.mnuSanPham_Click);
             // 
             // mnuTheLoai
             // 
+            this.mnuTheLoai.Image = ((System.Drawing.Image)(resources.GetObject("mnuTheLoai.Image")));
             this.mnuTheLoai.Name = "mnuTheLoai";
-            this.mnuTheLoai.Size = new System.Drawing.Size(63, 20);
+            this.mnuTheLoai.Size = new System.Drawing.Size(79, 20);
             this.mnuTheLoai.Text = "Thể Loại";
             this.mnuTheLoai.Click += new System.EventHandler(this.mnuTheLoai_Click);
             // 
             // mnuThongKe
             // 
             this.mnuThongKe.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.thốngKêToolStripMenuItem});
+            this.thốngKêToolStripMenuItem,
+            this.kháchHàngThânToolStripMenuItem});
+            this.mnuThongKe.Image = ((System.Drawing.Image)(resources.GetObject("mnuThongKe.Image")));
             this.mnuThongKe.Name = "mnuThongKe";
-            this.mnuThongKe.Size = new System.Drawing.Size(68, 20);
+            this.mnuThongKe.Size = new System.Drawing.Size(84, 20);
             this.mnuThongKe.Text = "Thống kê";
             this.mnuThongKe.Click += new System.EventHandler(this.thốngKêToolStripMenuItem_Click);
             // 
             // thốngKêToolStripMenuItem
             // 
+            this.thốngKêToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("thốngKêToolStripMenuItem.Image")));
             this.thốngKêToolStripMenuItem.Name = "thốngKêToolStripMenuItem";
-            this.thốngKêToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.thốngKêToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.thốngKêToolStripMenuItem.Text = "Sản phẩm bán chạy";
             this.thốngKêToolStripMenuItem.Click += new System.EventHandler(this.thốngKêToolStripMenuItem_Click_1);
+            // 
+            // kháchHàngThânToolStripMenuItem
+            // 
+            this.kháchHàngThânToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("kháchHàngThânToolStripMenuItem.Image")));
+            this.kháchHàngThânToolStripMenuItem.Name = "kháchHàngThânToolStripMenuItem";
+            this.kháchHàngThânToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.kháchHàngThânToolStripMenuItem.Text = "Khách hàng thân thiết";
+            this.kháchHàngThânToolStripMenuItem.Click += new System.EventHandler(this.kháchHàngThânToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1370, 711);
             this.Controls.Add(this.pnMain);
             this.Controls.Add(this.menuStrip2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip2;
             this.Name = "FrmMain";
             this.Text = "Quản Lý Shop Camera";
@@ -458,6 +479,7 @@
         private System.Windows.Forms.TextBox txtTonKho;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem thốngKêToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem kháchHàngThânToolStripMenuItem;
     }
 }
 

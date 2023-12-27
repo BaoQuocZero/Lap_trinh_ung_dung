@@ -35,8 +35,14 @@
             this.lblTenSP = new System.Windows.Forms.Label();
             this.txtTenSP = new System.Windows.Forms.TextBox();
             this.txtMaSP = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cboMaTL = new System.Windows.Forms.ComboBox();
             this.lblDiaChi = new System.Windows.Forms.Label();
             this.txtDonGia = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtGiamGia = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtTonKho = new System.Windows.Forms.TextBox();
             this.lblSdtKH = new System.Windows.Forms.Label();
             this.txtNhanSanXuat = new System.Windows.Forms.TextBox();
             this.pnButton = new System.Windows.Forms.FlowLayoutPanel();
@@ -46,12 +52,6 @@
             this.mnuSua = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuThoat = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvMain = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtTonKho = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtGiamGia = new System.Windows.Forms.TextBox();
-            this.cboMaTL = new System.Windows.Forms.ComboBox();
             this.pnMain.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.pnButton.SuspendLayout();
@@ -125,6 +125,26 @@
             this.txtMaSP.Size = new System.Drawing.Size(26, 20);
             this.txtMaSP.TabIndex = 31;
             // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(407, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 23);
+            this.label1.TabIndex = 33;
+            this.label1.Text = "Mã TL";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // cboMaTL
+            // 
+            this.cboMaTL.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboMaTL.FormattingEnabled = true;
+            this.cboMaTL.Location = new System.Drawing.Point(484, 3);
+            this.cboMaTL.Name = "cboMaTL";
+            this.cboMaTL.Size = new System.Drawing.Size(127, 21);
+            this.cboMaTL.TabIndex = 38;
+            this.cboMaTL.SelectedIndexChanged += new System.EventHandler(this.cboMaTL_SelectedIndexChanged);
+            // 
             // lblDiaChi
             // 
             this.lblDiaChi.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -141,6 +161,41 @@
             this.txtDonGia.Name = "txtDonGia";
             this.txtDonGia.Size = new System.Drawing.Size(127, 20);
             this.txtDonGia.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(827, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(71, 23);
+            this.label3.TabIndex = 36;
+            this.label3.Text = "Giảm giá";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtGiamGia
+            // 
+            this.txtGiamGia.Location = new System.Drawing.Point(904, 3);
+            this.txtGiamGia.Name = "txtGiamGia";
+            this.txtGiamGia.Size = new System.Drawing.Size(127, 20);
+            this.txtGiamGia.TabIndex = 37;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(1037, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(71, 23);
+            this.label2.TabIndex = 35;
+            this.label2.Text = "Tồn kho";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtTonKho
+            // 
+            this.txtTonKho.Location = new System.Drawing.Point(1114, 3);
+            this.txtTonKho.Name = "txtTonKho";
+            this.txtTonKho.ReadOnly = true;
+            this.txtTonKho.Size = new System.Drawing.Size(127, 20);
+            this.txtTonKho.TabIndex = 34;
             // 
             // lblSdtKH
             // 
@@ -225,65 +280,12 @@
             this.dgvMain.TabIndex = 4;
             this.dgvMain.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMain_CellContentClick);
             // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(407, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 23);
-            this.label1.TabIndex = 33;
-            this.label1.Text = "Mã TL";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(1037, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 23);
-            this.label2.TabIndex = 35;
-            this.label2.Text = "Tồn kho";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtTonKho
-            // 
-            this.txtTonKho.Location = new System.Drawing.Point(1114, 3);
-            this.txtTonKho.Name = "txtTonKho";
-            this.txtTonKho.ReadOnly = true;
-            this.txtTonKho.Size = new System.Drawing.Size(127, 20);
-            this.txtTonKho.TabIndex = 34;
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(827, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 23);
-            this.label3.TabIndex = 36;
-            this.label3.Text = "Giảm giá";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtGiamGia
-            // 
-            this.txtGiamGia.Location = new System.Drawing.Point(904, 3);
-            this.txtGiamGia.Name = "txtGiamGia";
-            this.txtGiamGia.Size = new System.Drawing.Size(127, 20);
-            this.txtGiamGia.TabIndex = 37;
-            // 
-            // cboMaTL
-            // 
-            this.cboMaTL.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboMaTL.FormattingEnabled = true;
-            this.cboMaTL.Location = new System.Drawing.Point(484, 3);
-            this.cboMaTL.Name = "cboMaTL";
-            this.cboMaTL.Size = new System.Drawing.Size(127, 21);
-            this.cboMaTL.TabIndex = 38;
-            this.cboMaTL.SelectedIndexChanged += new System.EventHandler(this.cboMaTL_SelectedIndexChanged);
-            // 
             // FrmSanPham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1370, 711);
             this.Controls.Add(this.pnMain);
             this.Name = "FrmSanPham";

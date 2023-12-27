@@ -92,7 +92,7 @@ VALUES
     (N'Camera IP 360 Độ 2MP Xiaomi Mi Home C200', 1, 550000, 1, 50, N'Xiaomi'),
     (N'Camera IP 360 Độ 2MP EZVIZ H6C', 1, 650000, 1, 30, N'EZVIZ'),
     (N'Camera IP 360 Độ 2MP IMOU Ranger 2C TA22CP', 1, 750000, 1, 20, N'Trung Quốc'),
-    (N'Máy ảnh Canon EOS M50 Mark II', 3, 14990000, 1, 40, N'Canon'),
+    (N'Máy ảnh Canon EOS M50 Mark II', 2, 14990000, 1, 40, N'Canon'),
     (N'Máy ảnh Canon EOS R5', 2, 149990000, 1, 15, N'Canon'),
     (N'Canon 600D', 2, 5490000, 1, 60, N'Canon'),
     (N'Máy ảnh Nikon Z6 II', 2, 47480000, 1, 25, N'Nikon'),
@@ -107,7 +107,7 @@ VALUES
 
 	INSERT INTO NhanVien (PassNV, HoLotNV, TenNV, DiaChiNV, SdtNV)
 VALUES 
-    ('0000', N'Nguyễn Lâm Quốc', 'Bảo', N'Trà Vinh', '0123456789'),
+    ('0000', N'Nguyễn Lâm Quốc', N'Bảo', N'Trà Vinh', '0123456789'),
     ('1111', N'Đinh Lê Bảo', 'Duy', N'Trà Vinh', '0987654321'),
     ('2222', N'Nguyễn Văn', N'Vửng', N'Trà Vinh', '0123987654');
 
@@ -135,3 +135,5 @@ GROUP BY
     SP.MaSP, SP.TenSP, SP.NhanSanXuat
 ORDER BY
     SoLuongBan DESC;
+
+SELECT * FROM KhachHang WHERE TenLienHe LIKE '%Minh%'
