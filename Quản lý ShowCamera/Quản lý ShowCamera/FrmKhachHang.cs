@@ -309,23 +309,7 @@ namespace Quản_lý_ShowCamera
 
         private void txtTenKH_TextChanged(object sender, EventArgs e)
         {
-            Timkhachhang();
-        }
-
-        void Timkhachhang()
-        {
-            command = connection.CreateCommand();
-            command.CommandText = "SELECT * FROM KhachHang WHERE TenLienHe LIKE @TenLienHe AND DiaChi LIKE @DiaChi AND Sdt LIKE @Sdt;";
-
-            // Sử dụng Parameters để tránh SQL Injection
-            command.Parameters.AddWithValue("@TenLienHe", "%" + txtTenKH.Text + "%");
-            command.Parameters.AddWithValue("@DiaChi", "%" + txtDiaChi.Text + "%");
-            command.Parameters.AddWithValue("@Sdt", "%" + txtSdtKH.Text + "%");
-
-            adapter.SelectCommand = command;
-            tableKhachHangTim.Clear();
-            adapter.Fill(tableKhachHangTim);
-            dgvMain.DataSource = tableKhachHangTim;
+            khachhang();
         }
 
 
@@ -347,12 +331,12 @@ namespace Quản_lý_ShowCamera
 
             // Cập nhật giá trị của TextBox
             txtSdtKH.Text = input;
-            Timkhachhang();
+            khachhang();
         }
 
         private void txtDiaChi_TextChanged(object sender, EventArgs e)
         {
-            Timkhachhang();
+            khachhang();
         }
     }
 }

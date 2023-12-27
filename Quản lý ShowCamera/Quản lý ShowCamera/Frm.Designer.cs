@@ -62,6 +62,7 @@
             this.mnuSanPham = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTheLoai = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuThongKe = new System.Windows.Forms.ToolStripMenuItem();
+            this.thốngKêToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnMain.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.pnButton.SuspendLayout();
@@ -130,7 +131,6 @@
             // 
             this.txtTenKH.Location = new System.Drawing.Point(135, 3);
             this.txtTenKH.Name = "txtTenKH";
-            this.txtTenKH.ReadOnly = true;
             this.txtTenKH.Size = new System.Drawing.Size(234, 20);
             this.txtTenKH.TabIndex = 1;
             this.txtTenKH.TextChanged += new System.EventHandler(this.txtTenKH_TextChanged);
@@ -196,7 +196,6 @@
             // 
             this.txtTenSP.Location = new System.Drawing.Point(135, 29);
             this.txtTenSP.Name = "txtTenSP";
-            this.txtTenSP.ReadOnly = true;
             this.txtTenSP.Size = new System.Drawing.Size(234, 20);
             this.txtTenSP.TabIndex = 26;
             this.txtTenSP.TextChanged += new System.EventHandler(this.txtTenSP_TextChanged);
@@ -290,7 +289,7 @@
             this.mnuThoat});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(258, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(138, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -383,10 +382,19 @@
             // 
             // mnuThongKe
             // 
+            this.mnuThongKe.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thốngKêToolStripMenuItem});
             this.mnuThongKe.Name = "mnuThongKe";
             this.mnuThongKe.Size = new System.Drawing.Size(68, 20);
             this.mnuThongKe.Text = "Thống kê";
             this.mnuThongKe.Click += new System.EventHandler(this.thốngKêToolStripMenuItem_Click);
+            // 
+            // thốngKêToolStripMenuItem
+            // 
+            this.thốngKêToolStripMenuItem.Name = "thốngKêToolStripMenuItem";
+            this.thốngKêToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.thốngKêToolStripMenuItem.Text = "Sản phẩm bán chạy";
+            this.thốngKêToolStripMenuItem.Click += new System.EventHandler(this.thốngKêToolStripMenuItem_Click_1);
             // 
             // FrmMain
             // 
@@ -449,6 +457,7 @@
         private System.Windows.Forms.TextBox txtMaKH;
         private System.Windows.Forms.TextBox txtTonKho;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem thốngKêToolStripMenuItem;
     }
 }
 

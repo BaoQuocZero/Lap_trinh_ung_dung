@@ -24,6 +24,8 @@ namespace Quản_lý_ShowCamera
         DataTable tableSanPham = new DataTable();
         DataTable tableTheLoai = new DataTable();
         DataTable tableThongKe = new DataTable();
+
+        DataTable tableKhachHangTim = new DataTable();
         void HoaDon()
         {
             command = connection.CreateCommand();
@@ -247,6 +249,7 @@ namespace Quản_lý_ShowCamera
         {
             khachhang();
             lblTieuDe.Text = "Khách hàng";
+
         }
 
         private void mnuNhaCungCap_Click(object sender, EventArgs e)
@@ -284,8 +287,7 @@ namespace Quản_lý_ShowCamera
 
         private void thốngKêToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            thongke();
-            lblTieuDe.Text = "Thống kê khách hàng";
+            
         }
 
         private void txtDiaChi_TextChanged(object sender, EventArgs e)
@@ -478,6 +480,12 @@ namespace Quản_lý_ShowCamera
         private void mnuThoat_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void thốngKêToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            thongke();
+            lblTieuDe.Text = "Thống kê khách hàng";
         }
     }
 }
