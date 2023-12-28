@@ -310,5 +310,43 @@ namespace Quản_lý_ShowCamera
         {
             this.Close();
         }
+
+        private void mnuTimKiem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtTen.Text != "")
+                {
+                    string tenNVCanTim = txtTen.Text.Trim();
+
+                    // Tạo câu truy vấn SQL
+                    string query = "SELECT * FROM NhanVien WHERE TenNV LIKE @TenNV";
+
+                    // Tạo đối tượng SqlCommand
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        // Thêm tham số vào câu truy vấn để tránh SQL injection
+                        cmd.Parameters.AddWithValue("@TenNV", "%" + tenNVCanTim + "%");
+
+                        // Tạo đối tượng SqlDataAdapter để lấy dữ liệu
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                        // Tạo đối tượng DataTable để lưu dữ liệu
+                        DataTable resultTable = new DataTable();
+
+                        // Đổ dữ liệu từ SqlDataAdapter vào DataTable
+                        adapter.Fill(resultTable);
+
+                        // Hiển thị kết quả trong DataGridView
+                        dgvMain.DataSource = resultTable;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý ngoại lệ ở đây, có thể là hiển thị thông báo lỗi, ghi log, v.v.
+                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

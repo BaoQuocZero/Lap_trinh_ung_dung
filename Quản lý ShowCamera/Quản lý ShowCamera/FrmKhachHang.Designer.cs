@@ -46,6 +46,7 @@
             this.mnuSua = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuThoat = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvMain = new System.Windows.Forms.DataGridView();
+            this.mnuTimKiem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnMain.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.pnButton.SuspendLayout();
@@ -162,13 +163,14 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuTimKiem,
             this.mnuThem,
             this.mnuXoa,
             this.mnuSua,
             this.mnuThoat});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(247, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(451, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -217,6 +219,14 @@
             this.dgvMain.TabIndex = 4;
             this.dgvMain.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMain_CellContentClick);
             // 
+            // mnuTimKiem
+            // 
+            this.mnuTimKiem.Image = ((System.Drawing.Image)(resources.GetObject("mnuTimKiem.Image")));
+            this.mnuTimKiem.Name = "mnuTimKiem";
+            this.mnuTimKiem.Size = new System.Drawing.Size(84, 20);
+            this.mnuTimKiem.Text = "Tìm kiếm";
+            this.mnuTimKiem.Click += new System.EventHandler(this.tìmKiếmToolStripMenuItem_Click);
+            // 
             // FrmKhachHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -260,5 +270,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuSua;
         private System.Windows.Forms.ToolStripMenuItem mnuThoat;
         private System.Windows.Forms.DataGridView dgvMain;
+        private System.Windows.Forms.ToolStripMenuItem mnuTimKiem;
     }
 }

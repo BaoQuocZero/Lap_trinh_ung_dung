@@ -64,6 +64,7 @@
             this.mnuThongKe = new System.Windows.Forms.ToolStripMenuItem();
             this.thốngKêToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kháchHàngThânToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuTimKiem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnMain.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.pnButton.SuspendLayout();
@@ -224,7 +225,6 @@
             // 
             this.txtTenNV.Location = new System.Drawing.Point(539, 29);
             this.txtTenNV.Name = "txtTenNV";
-            this.txtTenNV.ReadOnly = true;
             this.txtTenNV.Size = new System.Drawing.Size(234, 20);
             this.txtTenNV.TabIndex = 24;
             this.txtTenNV.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
@@ -287,10 +287,11 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuThem,
+            this.mnuTimKiem,
             this.mnuThoat});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(138, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(222, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -414,6 +415,14 @@
             this.kháchHàngThânToolStripMenuItem.Text = "Khách hàng thân thiết";
             this.kháchHàngThânToolStripMenuItem.Click += new System.EventHandler(this.kháchHàngThânToolStripMenuItem_Click);
             // 
+            // mnuTimKiem
+            // 
+            this.mnuTimKiem.Image = ((System.Drawing.Image)(resources.GetObject("mnuTimKiem.Image")));
+            this.mnuTimKiem.Name = "mnuTimKiem";
+            this.mnuTimKiem.Size = new System.Drawing.Size(84, 20);
+            this.mnuTimKiem.Text = "Tìm kiếm";
+            this.mnuTimKiem.Click += new System.EventHandler(this.tìmKiếmToolStripMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -480,6 +489,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem thốngKêToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kháchHàngThânToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuTimKiem;
     }
 }
 

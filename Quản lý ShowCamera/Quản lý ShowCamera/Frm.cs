@@ -297,7 +297,7 @@ namespace Quản_lý_ShowCamera
 
         private void thốngKêToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void txtDiaChi_TextChanged(object sender, EventArgs e)
@@ -495,13 +495,104 @@ namespace Quản_lý_ShowCamera
         private void thốngKêToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             thongke();
-            lblTieuDe.Text = "Thống kê khách hàng";
+            lblTieuDe.Text = "Thống kê sản phẩm bán chạy";
         }
 
         private void kháchHàngThânToolStripMenuItem_Click(object sender, EventArgs e)
         {
             thongkeKH();
-            lblTieuDe.Text = "Thống kê khách hàng";
+            lblTieuDe.Text = "Thống kê khách hàng thân thiết";
         }
+
+        private void tìmKiếmToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (lblTieuDe.Text == "Khách hàng")
+                {
+                    string tenKHCanTim = txtTenKH.Text.Trim();
+
+                    // Tạo câu truy vấn SQL
+                    string query = "SELECT * FROM KhachHang WHERE TenLienHe LIKE @TenLienHe";
+
+                    // Tạo đối tượng SqlCommand
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        // Thêm tham số vào câu truy vấn để tránh SQL injection
+                        cmd.Parameters.AddWithValue("@TenLienHe", "%" + tenKHCanTim + "%");
+
+                        // Tạo đối tượng SqlDataAdapter để lấy dữ liệu
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                        // Tạo đối tượng DataTable để lưu dữ liệu
+                        DataTable resultTable = new DataTable();
+
+                        // Đổ dữ liệu từ SqlDataAdapter vào DataTable
+                        adapter.Fill(resultTable);
+
+                        // Hiển thị kết quả trong DataGridView
+                        dgvMain.DataSource = resultTable;
+                    }
+                }
+                else if (lblTieuDe.Text == "Sản phẩm")
+                {
+                    string tenSPCanTim = txtTenSP.Text.Trim();
+
+                    // Tạo câu truy vấn SQL
+                    string query = "SELECT * FROM SanPham WHERE TenSP LIKE @TenSP";
+
+                    // Tạo đối tượng SqlCommand
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        // Thêm tham số vào câu truy vấn để tránh SQL injection
+                        cmd.Parameters.AddWithValue("@TenSP", "%" + tenSPCanTim + "%");
+
+                        // Tạo đối tượng SqlDataAdapter để lấy dữ liệu
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                        // Tạo đối tượng DataTable để lưu dữ liệu
+                        DataTable resultTable = new DataTable();
+
+                        // Đổ dữ liệu từ SqlDataAdapter vào DataTable
+                        adapter.Fill(resultTable);
+
+                        // Hiển thị kết quả trong DataGridView
+                        dgvMain.DataSource = resultTable;
+                    }
+                }
+                else if (lblTieuDe.Text == "Nhân viên")
+                {
+                    string tenNVCanTim = txtTenNV.Text.Trim();
+
+                    // Tạo câu truy vấn SQL
+                    string query = "SELECT * FROM NhanVien WHERE TenNV LIKE @TenNV";
+
+                    // Tạo đối tượng SqlCommand
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        // Thêm tham số vào câu truy vấn để tránh SQL injection
+                        cmd.Parameters.AddWithValue("@TenNV", "%" + tenNVCanTim + "%");
+
+                        // Tạo đối tượng SqlDataAdapter để lấy dữ liệu
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                        // Tạo đối tượng DataTable để lưu dữ liệu
+                        DataTable resultTable = new DataTable();
+
+                        // Đổ dữ liệu từ SqlDataAdapter vào DataTable
+                        adapter.Fill(resultTable);
+
+                        // Hiển thị kết quả trong DataGridView
+                        dgvMain.DataSource = resultTable;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý ngoại lệ ở đây, có thể là hiển thị thông báo lỗi, ghi log, v.v.
+                MessageBox.Show("Đã xảy ra lỗi khi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }
