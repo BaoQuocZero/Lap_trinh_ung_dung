@@ -41,3 +41,4 @@ C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug
 C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản_lý_ShowCamera.FrmKhachHang.resources
 C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản_lý_ShowCamera.FrmNhanVien.resources
 C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản_lý_ShowCamera.FrmSanPham.resources
+C:\Code\Lap_trinh_ung_dung\Quản lý ShowCamera\Quản lý ShowCamera\obj\Debug\Quản_lý_ShowCamera.FrmDangNhap.resources
