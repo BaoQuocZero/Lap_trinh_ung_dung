@@ -352,31 +352,42 @@ namespace Quản_lý_ShowCamera
         private void txtHo_TextChanged(object sender, EventArgs e)
         {
             string inputText = txtHo.Text;
+            StringBuilder validText = new StringBuilder();
 
             // Kiểm tra từng ký tự trong văn bản
             foreach (char c in inputText)
             {
-                if (char.IsDigit(c))
+                // Kiểm tra xem ký tự là chữ cái tiếng Việt hoặc khoảng trắng
+                if (char.IsLetter(c) && (char.GetUnicodeCategory(c) == System.Globalization.UnicodeCategory.LowercaseLetter ||
+                    char.GetUnicodeCategory(c) == System.Globalization.UnicodeCategory.UppercaseLetter) || char.IsWhiteSpace(c))
                 {
-                    // Nếu ký tự là số, loại bỏ nó
-                    txtHo.Text = txtHo.Text.Replace(c.ToString(), "");
+                    validText.Append(c);
                 }
             }
+
+            // Gán văn bản hợp lệ vào ô văn bản
+            txtHo.Text = validText.ToString();
         }
+
 
         private void txtTen_TextChanged(object sender, EventArgs e)
         {
             string inputText = txtTen.Text;
+            StringBuilder validText = new StringBuilder();
 
             // Kiểm tra từng ký tự trong văn bản
             foreach (char c in inputText)
             {
-                if (char.IsDigit(c))
+                // Kiểm tra xem ký tự là chữ cái tiếng Việt hoặc khoảng trắng
+                if (char.IsLetter(c) && (char.GetUnicodeCategory(c) == System.Globalization.UnicodeCategory.LowercaseLetter ||
+                    char.GetUnicodeCategory(c) == System.Globalization.UnicodeCategory.UppercaseLetter) || char.IsWhiteSpace(c))
                 {
-                    // Nếu ký tự là số, loại bỏ nó
-                    txtTen.Text = txtTen.Text.Replace(c.ToString(), "");
+                    validText.Append(c);
                 }
             }
+
+            // Gán văn bản hợp lệ vào ô văn bản
+            txtTen.Text = validText.ToString();
         }
 
         private void txtSdtNV_TextChanged(object sender, EventArgs e)
