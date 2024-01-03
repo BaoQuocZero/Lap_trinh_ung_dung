@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmXuatHoaDon));
             this.pnMain = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblTieuDe = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblTieuDe = new System.Windows.Forms.Label();
             this.lblTenKH = new System.Windows.Forms.Label();
             this.txtTenKH = new System.Windows.Forms.TextBox();
             this.txtMaKH = new System.Windows.Forms.TextBox();
@@ -54,7 +54,11 @@
             this.mnuThem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTimKiem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuThoat = new System.Windows.Forms.ToolStripMenuItem();
+            this.rptMan = new Microsoft.Reporting.WinForms.ReportViewer();
             this.dgvMain = new System.Windows.Forms.DataGridView();
+            this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtDonGia = new System.Windows.Forms.TextBox();
             this.pnMain.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.pnButton.SuspendLayout();
@@ -64,27 +68,17 @@
             // 
             // pnMain
             // 
-            this.pnMain.Controls.Add(this.lblTieuDe);
             this.pnMain.Controls.Add(this.flowLayoutPanel1);
-            this.pnMain.Controls.Add(this.pnButton);
+            this.pnMain.Controls.Add(this.rptMan);
             this.pnMain.Controls.Add(this.dgvMain);
-            this.pnMain.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.pnMain.Location = new System.Drawing.Point(12, 12);
             this.pnMain.Name = "pnMain";
             this.pnMain.Size = new System.Drawing.Size(1339, 638);
             this.pnMain.TabIndex = 7;
             // 
-            // lblTieuDe
-            // 
-            this.lblTieuDe.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTieuDe.Location = new System.Drawing.Point(3, 0);
-            this.lblTieuDe.Name = "lblTieuDe";
-            this.lblTieuDe.Size = new System.Drawing.Size(398, 23);
-            this.lblTieuDe.TabIndex = 0;
-            this.lblTieuDe.Text = "Xuất hóa đơn";
-            // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.Controls.Add(this.lblTieuDe);
             this.flowLayoutPanel1.Controls.Add(this.lblTenKH);
             this.flowLayoutPanel1.Controls.Add(this.txtTenKH);
             this.flowLayoutPanel1.Controls.Add(this.txtMaKH);
@@ -95,6 +89,8 @@
             this.flowLayoutPanel1.Controls.Add(this.lblTenSP);
             this.flowLayoutPanel1.Controls.Add(this.txtTenSP);
             this.flowLayoutPanel1.Controls.Add(this.txtMaSP);
+            this.flowLayoutPanel1.Controls.Add(this.label2);
+            this.flowLayoutPanel1.Controls.Add(this.txtDonGia);
             this.flowLayoutPanel1.Controls.Add(this.LblTenNhanVien);
             this.flowLayoutPanel1.Controls.Add(this.txtTenNV);
             this.flowLayoutPanel1.Controls.Add(this.txtMaNV);
@@ -102,15 +98,25 @@
             this.flowLayoutPanel1.Controls.Add(this.txtSoLuong);
             this.flowLayoutPanel1.Controls.Add(this.label1);
             this.flowLayoutPanel1.Controls.Add(this.txtTonKho);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 26);
+            this.flowLayoutPanel1.Controls.Add(this.pnButton);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1339, 84);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(411, 257);
             this.flowLayoutPanel1.TabIndex = 1;
+            // 
+            // lblTieuDe
+            // 
+            this.lblTieuDe.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTieuDe.Location = new System.Drawing.Point(3, 0);
+            this.lblTieuDe.Name = "lblTieuDe";
+            this.lblTieuDe.Size = new System.Drawing.Size(294, 23);
+            this.lblTieuDe.TabIndex = 0;
+            this.lblTieuDe.Text = "Xuất hóa đơn";
             // 
             // lblTenKH
             // 
             this.lblTenKH.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTenKH.Location = new System.Drawing.Point(3, 0);
+            this.lblTenKH.Location = new System.Drawing.Point(3, 23);
             this.lblTenKH.Name = "lblTenKH";
             this.lblTenKH.Size = new System.Drawing.Size(126, 23);
             this.lblTenKH.TabIndex = 0;
@@ -119,14 +125,14 @@
             // 
             // txtTenKH
             // 
-            this.txtTenKH.Location = new System.Drawing.Point(135, 3);
+            this.txtTenKH.Location = new System.Drawing.Point(135, 26);
             this.txtTenKH.Name = "txtTenKH";
-            this.txtTenKH.Size = new System.Drawing.Size(234, 20);
+            this.txtTenKH.Size = new System.Drawing.Size(237, 20);
             this.txtTenKH.TabIndex = 1;
             // 
             // txtMaKH
             // 
-            this.txtMaKH.Location = new System.Drawing.Point(375, 3);
+            this.txtMaKH.Location = new System.Drawing.Point(378, 26);
             this.txtMaKH.Name = "txtMaKH";
             this.txtMaKH.ReadOnly = true;
             this.txtMaKH.Size = new System.Drawing.Size(26, 20);
@@ -135,7 +141,7 @@
             // lblDiaChi
             // 
             this.lblDiaChi.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDiaChi.Location = new System.Drawing.Point(407, 0);
+            this.lblDiaChi.Location = new System.Drawing.Point(3, 49);
             this.lblDiaChi.Name = "lblDiaChi";
             this.lblDiaChi.Size = new System.Drawing.Size(126, 23);
             this.lblDiaChi.TabIndex = 6;
@@ -144,16 +150,16 @@
             // 
             // txtDiaChi
             // 
-            this.txtDiaChi.Location = new System.Drawing.Point(539, 3);
+            this.txtDiaChi.Location = new System.Drawing.Point(135, 52);
             this.txtDiaChi.Name = "txtDiaChi";
             this.txtDiaChi.ReadOnly = true;
-            this.txtDiaChi.Size = new System.Drawing.Size(267, 20);
+            this.txtDiaChi.Size = new System.Drawing.Size(269, 20);
             this.txtDiaChi.TabIndex = 7;
             // 
             // lblSdtKH
             // 
             this.lblSdtKH.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSdtKH.Location = new System.Drawing.Point(812, 0);
+            this.lblSdtKH.Location = new System.Drawing.Point(3, 75);
             this.lblSdtKH.Name = "lblSdtKH";
             this.lblSdtKH.Size = new System.Drawing.Size(126, 23);
             this.lblSdtKH.TabIndex = 16;
@@ -162,16 +168,16 @@
             // 
             // txtSdtKH
             // 
-            this.txtSdtKH.Location = new System.Drawing.Point(944, 3);
+            this.txtSdtKH.Location = new System.Drawing.Point(135, 78);
             this.txtSdtKH.Name = "txtSdtKH";
             this.txtSdtKH.ReadOnly = true;
-            this.txtSdtKH.Size = new System.Drawing.Size(267, 20);
+            this.txtSdtKH.Size = new System.Drawing.Size(269, 20);
             this.txtSdtKH.TabIndex = 17;
             // 
             // lblTenSP
             // 
             this.lblTenSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTenSP.Location = new System.Drawing.Point(3, 26);
+            this.lblTenSP.Location = new System.Drawing.Point(3, 101);
             this.lblTenSP.Name = "lblTenSP";
             this.lblTenSP.Size = new System.Drawing.Size(126, 23);
             this.lblTenSP.TabIndex = 25;
@@ -180,14 +186,14 @@
             // 
             // txtTenSP
             // 
-            this.txtTenSP.Location = new System.Drawing.Point(135, 29);
+            this.txtTenSP.Location = new System.Drawing.Point(135, 104);
             this.txtTenSP.Name = "txtTenSP";
-            this.txtTenSP.Size = new System.Drawing.Size(234, 20);
+            this.txtTenSP.Size = new System.Drawing.Size(237, 20);
             this.txtTenSP.TabIndex = 26;
             // 
             // txtMaSP
             // 
-            this.txtMaSP.Location = new System.Drawing.Point(375, 29);
+            this.txtMaSP.Location = new System.Drawing.Point(378, 104);
             this.txtMaSP.Name = "txtMaSP";
             this.txtMaSP.ReadOnly = true;
             this.txtMaSP.Size = new System.Drawing.Size(26, 20);
@@ -196,7 +202,7 @@
             // LblTenNhanVien
             // 
             this.LblTenNhanVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTenNhanVien.Location = new System.Drawing.Point(407, 26);
+            this.LblTenNhanVien.Location = new System.Drawing.Point(3, 153);
             this.LblTenNhanVien.Name = "LblTenNhanVien";
             this.LblTenNhanVien.Size = new System.Drawing.Size(126, 23);
             this.LblTenNhanVien.TabIndex = 23;
@@ -205,14 +211,14 @@
             // 
             // txtTenNV
             // 
-            this.txtTenNV.Location = new System.Drawing.Point(539, 29);
+            this.txtTenNV.Location = new System.Drawing.Point(135, 156);
             this.txtTenNV.Name = "txtTenNV";
-            this.txtTenNV.Size = new System.Drawing.Size(234, 20);
+            this.txtTenNV.Size = new System.Drawing.Size(237, 20);
             this.txtTenNV.TabIndex = 24;
             // 
             // txtMaNV
             // 
-            this.txtMaNV.Location = new System.Drawing.Point(779, 29);
+            this.txtMaNV.Location = new System.Drawing.Point(378, 156);
             this.txtMaNV.Name = "txtMaNV";
             this.txtMaNV.ReadOnly = true;
             this.txtMaNV.Size = new System.Drawing.Size(26, 20);
@@ -221,7 +227,7 @@
             // lblSoLuong
             // 
             this.lblSoLuong.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSoLuong.Location = new System.Drawing.Point(811, 26);
+            this.lblSoLuong.Location = new System.Drawing.Point(3, 179);
             this.lblSoLuong.Name = "lblSoLuong";
             this.lblSoLuong.Size = new System.Drawing.Size(126, 23);
             this.lblSoLuong.TabIndex = 27;
@@ -230,7 +236,7 @@
             // 
             // txtSoLuong
             // 
-            this.txtSoLuong.Location = new System.Drawing.Point(943, 29);
+            this.txtSoLuong.Location = new System.Drawing.Point(135, 182);
             this.txtSoLuong.Name = "txtSoLuong";
             this.txtSoLuong.Size = new System.Drawing.Size(176, 20);
             this.txtSoLuong.TabIndex = 28;
@@ -238,7 +244,7 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1125, 26);
+            this.label1.Location = new System.Drawing.Point(317, 179);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 23);
             this.label1.TabIndex = 33;
@@ -247,7 +253,7 @@
             // 
             // txtTonKho
             // 
-            this.txtTonKho.Location = new System.Drawing.Point(1186, 29);
+            this.txtTonKho.Location = new System.Drawing.Point(378, 182);
             this.txtTonKho.Name = "txtTonKho";
             this.txtTonKho.ReadOnly = true;
             this.txtTonKho.Size = new System.Drawing.Size(26, 20);
@@ -256,9 +262,9 @@
             // pnButton
             // 
             this.pnButton.Controls.Add(this.menuStrip1);
-            this.pnButton.Location = new System.Drawing.Point(3, 116);
+            this.pnButton.Location = new System.Drawing.Point(3, 208);
             this.pnButton.Name = "pnButton";
-            this.pnButton.Size = new System.Drawing.Size(761, 37);
+            this.pnButton.Size = new System.Drawing.Size(403, 37);
             this.pnButton.TabIndex = 7;
             // 
             // menuStrip1
@@ -269,7 +275,7 @@
             this.mnuThoat});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(342, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(222, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -280,6 +286,7 @@
             this.mnuThem.Name = "mnuThem";
             this.mnuThem.Size = new System.Drawing.Size(65, 20);
             this.mnuThem.Text = "Xuất HD";
+            this.mnuThem.Click += new System.EventHandler(this.mnuThem_Click);
             // 
             // mnuTimKiem
             // 
@@ -287,6 +294,7 @@
             this.mnuTimKiem.Name = "mnuTimKiem";
             this.mnuTimKiem.Size = new System.Drawing.Size(84, 20);
             this.mnuTimKiem.Text = "Tìm kiếm";
+            this.mnuTimKiem.Click += new System.EventHandler(this.mnuTimKiem_Click);
             // 
             // mnuThoat
             // 
@@ -297,14 +305,39 @@
             this.mnuThoat.Text = "Thoát";
             this.mnuThoat.Click += new System.EventHandler(this.mnuThoat_Click);
             // 
+            // rptMan
+            // 
+            this.rptMan.Location = new System.Drawing.Point(420, 3);
+            this.rptMan.Name = "rptMan";
+            this.rptMan.ServerReport.BearerToken = null;
+            this.rptMan.Size = new System.Drawing.Size(908, 391);
+            this.rptMan.TabIndex = 5;
+            // 
             // dgvMain
             // 
             this.dgvMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMain.Location = new System.Drawing.Point(3, 159);
+            this.dgvMain.Location = new System.Drawing.Point(3, 400);
             this.dgvMain.Name = "dgvMain";
-            this.dgvMain.Size = new System.Drawing.Size(1339, 462);
+            this.dgvMain.Size = new System.Drawing.Size(1339, 219);
             this.dgvMain.TabIndex = 4;
             this.dgvMain.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMain_CellClick);
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 127);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(126, 23);
+            this.label2.TabIndex = 34;
+            this.label2.Text = "Đơn giá";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtDonGia
+            // 
+            this.txtDonGia.Location = new System.Drawing.Point(135, 130);
+            this.txtDonGia.Name = "txtDonGia";
+            this.txtDonGia.Size = new System.Drawing.Size(269, 20);
+            this.txtDonGia.TabIndex = 35;
             // 
             // FrmXuatHoaDon
             // 
@@ -355,5 +388,9 @@
         private System.Windows.Forms.ToolStripMenuItem mnuTimKiem;
         private System.Windows.Forms.ToolStripMenuItem mnuThoat;
         private System.Windows.Forms.DataGridView dgvMain;
+        private System.DirectoryServices.DirectoryEntry directoryEntry1;
+        private Microsoft.Reporting.WinForms.ReportViewer rptMan;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtDonGia;
     }
 }

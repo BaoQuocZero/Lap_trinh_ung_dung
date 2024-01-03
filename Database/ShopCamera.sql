@@ -136,7 +136,7 @@ GROUP BY
 ORDER BY
     SoLuongBan DESC;
 
-SELECT KH.TenLienHe, KH.DiaChi, KH.Sdt, SP.TenSP, TL.TenTL, NV.TenNV, CTHD.SoLuong, SP.DonGiaSP, SP.TonKhoSP, HD.MaHD, SP.MaSP, KH.MaKH, NV.MaNV, TL.MaTL
+SELECT KH.TenLienHe, KH.DiaChi, KH.Sdt, SP.TenSP, TL.TenTL, NV.TenNV, CTHD.SoLuong, SP.DonGiaSP, SP.TonKhoSP, HD.MaHD, SP.MaSP, KH.MaKH, NV.MaNV, TL.MaTL, SP.DonGiaSP
 FROM HoaDon as HD, SanPham as SP, ChiTietHoaDon as CTHD, KhachHang as KH, NhanVien as NV, TheLoai as TL
 WHERE HD.MaHD = CTHD.MaHD AND HD.MaKH = KH.MaKH AND HD.MaNV = NV.MaNV AND CTHD.MaSP = SP.MaSP AND SP.MaTL = TL.MaTL
 ORDER BY HD.MaHD DESC
