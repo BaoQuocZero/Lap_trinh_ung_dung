@@ -29,7 +29,7 @@ namespace Quản_lý_ShowCamera
         void HoaDon()
         {
             command = connection.CreateCommand();
-            command.CommandText = "SELECT * FROM HoaDon";
+            command.CommandText = "SELECT KH.TenLienHe , SP.TenSP, TL.TenTL, CTHD.SoLuong, SP.DonGiaSP, HD.MaHD, SP.MaSP, KH.MaKH, NV.MaNV, TL.MaTL\r\nFROM HoaDon as HD, SanPham as SP, ChiTietHoaDon as CTHD, KhachHang as KH, NhanVien as NV, TheLoai as TL\r\nWHERE HD.MaHD = CTHD.MaHD AND HD.MaKH = KH.MaKH AND HD.MaNV = NV.MaNV AND CTHD.MaSP = SP.MaSP AND SP.MaTL = TL.MaTL";
             adapter.SelectCommand = command;
             tableHoaDon.Clear();
             adapter.Fill(tableHoaDon);
@@ -594,5 +594,10 @@ namespace Quản_lý_ShowCamera
             }
         }
 
+        private void xuấtHóaĐơnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmXuatHoaDon frm = new FrmXuatHoaDon();
+            frm.ShowDialog();
+        }
     }
 }
