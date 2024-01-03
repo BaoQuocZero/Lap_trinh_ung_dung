@@ -47,12 +47,12 @@
             this.txtNhanSanXuat = new System.Windows.Forms.TextBox();
             this.pnButton = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.mnuTimKiem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuThem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuXoa = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSua = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuThoat = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvMain = new System.Windows.Forms.DataGridView();
-            this.mnuTimKiem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnMain.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.pnButton.SuspendLayout();
@@ -162,6 +162,7 @@
             this.txtDonGia.Name = "txtDonGia";
             this.txtDonGia.Size = new System.Drawing.Size(127, 20);
             this.txtDonGia.TabIndex = 7;
+            this.txtDonGia.TextChanged += new System.EventHandler(this.txtDonGia_TextChanged);
             // 
             // label3
             // 
@@ -179,6 +180,7 @@
             this.txtGiamGia.Name = "txtGiamGia";
             this.txtGiamGia.Size = new System.Drawing.Size(127, 20);
             this.txtGiamGia.TabIndex = 37;
+            this.txtGiamGia.TextChanged += new System.EventHandler(this.txtGiamGia_TextChanged);
             // 
             // label2
             // 
@@ -194,9 +196,9 @@
             // 
             this.txtTonKho.Location = new System.Drawing.Point(1114, 3);
             this.txtTonKho.Name = "txtTonKho";
-            this.txtTonKho.ReadOnly = true;
             this.txtTonKho.Size = new System.Drawing.Size(127, 20);
             this.txtTonKho.TabIndex = 34;
+            this.txtTonKho.TextChanged += new System.EventHandler(this.txtTonKho_TextChanged);
             // 
             // lblSdtKH
             // 
@@ -233,9 +235,17 @@
             this.mnuThoat});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(452, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(332, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // mnuTimKiem
+            // 
+            this.mnuTimKiem.Image = ((System.Drawing.Image)(resources.GetObject("mnuTimKiem.Image")));
+            this.mnuTimKiem.Name = "mnuTimKiem";
+            this.mnuTimKiem.Size = new System.Drawing.Size(85, 20);
+            this.mnuTimKiem.Text = "Tìm Kiếm";
+            this.mnuTimKiem.Click += new System.EventHandler(this.mnuTimKiem_Click);
             // 
             // mnuThem
             // 
@@ -281,14 +291,6 @@
             this.dgvMain.Size = new System.Drawing.Size(1339, 462);
             this.dgvMain.TabIndex = 4;
             this.dgvMain.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMain_CellContentClick);
-            // 
-            // mnuTimKiem
-            // 
-            this.mnuTimKiem.Image = ((System.Drawing.Image)(resources.GetObject("mnuTimKiem.Image")));
-            this.mnuTimKiem.Name = "mnuTimKiem";
-            this.mnuTimKiem.Size = new System.Drawing.Size(85, 20);
-            this.mnuTimKiem.Text = "Tìm Kiếm";
-            this.mnuTimKiem.Click += new System.EventHandler(this.mnuTimKiem_Click);
             // 
             // FrmSanPham
             // 

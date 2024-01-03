@@ -65,9 +65,9 @@ namespace Quản_lý_ShowCamera
 
         private void mnuThem_Click(object sender, EventArgs e)
         {
-            if (txtTenKH.Text == "" || txtDiaChi.Text == "" || txtSdtKH.Text == "")
+            if (txtTenKH.Text == "" || txtDiaChi.Text == "" || txtSdtKH.Text == "" || txtSdtKH.Text.Length != 10)
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin khách hàng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin khách hàng và số điện thoại phải là 10 số!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -265,9 +265,9 @@ namespace Quản_lý_ShowCamera
 
         private void mnuSua_Click(object sender, EventArgs e)
         {
-            if (txtMaKH.Text == "" || txtTenKH.Text == "" || txtDiaChi.Text == "" || txtSdtKH.Text == "")
+            if (txtMaKH.Text == "" || txtTenKH.Text == "" || txtDiaChi.Text == "" || txtSdtKH.Text == "" || txtSdtKH.Text.Length != 10)
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin khách hàng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin khách hàng và số điện thoại phải là 10 số!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -309,6 +309,17 @@ namespace Quản_lý_ShowCamera
 
         private void txtTenKH_TextChanged(object sender, EventArgs e)
         {
+            string inputText = txtTenKH.Text;
+
+            // Kiểm tra từng ký tự trong văn bản
+            foreach (char c in inputText)
+            {
+                if (char.IsDigit(c))
+                {
+                    // Nếu ký tự là số, loại bỏ nó
+                    txtTenKH.Text = txtTenKH.Text.Replace(c.ToString(), "");
+                }
+            }
             khachhang();
         }
 

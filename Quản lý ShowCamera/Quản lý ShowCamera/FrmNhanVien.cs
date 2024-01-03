@@ -59,7 +59,7 @@ namespace Quản_lý_ShowCamera
             // Kiểm tra xem các TextBox có giá trị không rỗng
             if (txtMatKhau.Text != "" &&
                 txtHo.Text != "" && txtTen.Text != "" &&
-                txtDiaChi.Text != "" && txtSdtNV.Text != "")
+                txtDiaChi.Text != "" && txtSdtNV.Text != "" && txtSdtNV.Text.Length == 10)
             {
                 // Lấy thông tin từ các TextBox
                 string maNV = txtMaNV.Text;
@@ -261,7 +261,7 @@ namespace Quản_lý_ShowCamera
             // Kiểm tra xem các TextBox có giá trị không rỗng
             if (!string.IsNullOrWhiteSpace(txtMaNV.Text) && !string.IsNullOrWhiteSpace(txtMatKhau.Text) &&
                 !string.IsNullOrWhiteSpace(txtHo.Text) && !string.IsNullOrWhiteSpace(txtTen.Text) &&
-                !string.IsNullOrWhiteSpace(txtDiaChi.Text) && !string.IsNullOrWhiteSpace(txtSdtNV.Text))
+                !string.IsNullOrWhiteSpace(txtDiaChi.Text) && !string.IsNullOrWhiteSpace(txtSdtNV.Text) && txtSdtNV.Text.Length == 10)
             {
                 // Lấy thông tin từ các TextBox
                 string maNV = txtMaNV.Text;
@@ -347,6 +347,51 @@ namespace Quản_lý_ShowCamera
                 // Xử lý ngoại lệ ở đây, có thể là hiển thị thông báo lỗi, ghi log, v.v.
                 MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void txtHo_TextChanged(object sender, EventArgs e)
+        {
+            string inputText = txtHo.Text;
+
+            // Kiểm tra từng ký tự trong văn bản
+            foreach (char c in inputText)
+            {
+                if (char.IsDigit(c))
+                {
+                    // Nếu ký tự là số, loại bỏ nó
+                    txtHo.Text = txtHo.Text.Replace(c.ToString(), "");
+                }
+            }
+        }
+
+        private void txtTen_TextChanged(object sender, EventArgs e)
+        {
+            string inputText = txtTen.Text;
+
+            // Kiểm tra từng ký tự trong văn bản
+            foreach (char c in inputText)
+            {
+                if (char.IsDigit(c))
+                {
+                    // Nếu ký tự là số, loại bỏ nó
+                    txtTen.Text = txtTen.Text.Replace(c.ToString(), "");
+                }
+            }
+        }
+
+        private void txtSdtNV_TextChanged(object sender, EventArgs e)
+        {
+            // Xóa bỏ các ký tự không phải số
+            string input = new string(txtSdtNV.Text.Where(char.IsDigit).ToArray());
+
+            // Giữ lại chỉ 10 ký tự đầu tiên
+            if (input.Length > 10)
+            {
+                input = input.Substring(0, 10);
+            }
+
+            // Cập nhật giá trị của TextBox
+            txtSdtNV.Text = input;
         }
     }
 }

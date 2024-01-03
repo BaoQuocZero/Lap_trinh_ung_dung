@@ -339,9 +339,9 @@ namespace Quản_lý_ShowCamera
                 int tonKho = int.Parse(txtTonKho.Text);
 
                 // Kiểm tra nếu số lượng lớn hơn tồn kho, thiết lập giá trị về tồn kho
-                if (soLuong > tonKho)
+                if (soLuong > tonKho || soLuong < 1)
                 {
-                    MessageBox.Show("Số lượng không được lớn hơn tồn kho!");
+                    MessageBox.Show("Số lượng không được âm hoặc lớn hơn tồn kho!");
                     txtSoLuong.Text = txtTonKho.Text;
                 }
             }

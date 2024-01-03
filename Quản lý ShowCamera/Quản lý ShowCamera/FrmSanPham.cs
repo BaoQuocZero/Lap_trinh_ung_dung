@@ -429,5 +429,38 @@ namespace Quản_lý_ShowCamera
                 MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void txtDonGia_TextChanged(object sender, EventArgs e)
+        {
+            if (!long.TryParse(txtDonGia.Text, out long donGia) || donGia <= 0)
+            {
+                // Nếu không phải số hoặc số nhỏ hơn hoặc bằng 0, loại bỏ nó
+                MessageBox.Show("Đơn giá phải lớn hơn 0 và không quá 9223372036854775807", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtDonGia.Text = "1000000";
+            }
+        }
+
+        private void txtGiamGia_TextChanged(object sender, EventArgs e)
+        {
+            // Kiểm tra xem văn bản có chứa số không
+            if (!double.TryParse(txtGiamGia.Text, out double giamGia) || giamGia < 0 || giamGia > 1)
+            {
+                // Nếu không phải số hoặc số nằm ngoài khoảng từ 0 đến 1, loại bỏ nó
+                MessageBox.Show("Giảm giá có giá trị trong khoảng từ 0 - 1", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtGiamGia.Text = "1";
+            }
+        }
+
+        private void txtTonKho_TextChanged(object sender, EventArgs e)
+        {
+            // Kiểm tra xem văn bản có chứa số không
+            if (!int.TryParse(txtTonKho.Text, out int tonKho) || tonKho < 1)
+            {
+                // Nếu không phải số hoặc số nhỏ hơn 1, loại bỏ nó
+                MessageBox.Show("Tồn kho tối thiểu là 1", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtTonKho.Text = "1";
+            }
+        }
+
     }
 }
