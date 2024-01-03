@@ -327,7 +327,19 @@ namespace Quản_lý_ShowCamera
             // Kiểm tra MaSP có được nhập hay không
             if (string.IsNullOrEmpty(txtMaSP.Text))
             {
-                MessageBox.Show("Vui lòng nhập Mã sản phẩm cần sửa.");
+                MessageBox.Show("Vui lòng nhập Mã sản phẩm cần sửa.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Kiểm tra các TextBox trước khi cập nhật
+            if (string.IsNullOrWhiteSpace(txtTenSP.Text) ||
+                string.IsNullOrWhiteSpace(cboMaTL.Text) ||
+                string.IsNullOrWhiteSpace(txtDonGia.Text) ||
+                string.IsNullOrWhiteSpace(txtGiamGia.Text) ||
+                string.IsNullOrWhiteSpace(txtTonKho.Text) ||
+                string.IsNullOrWhiteSpace(txtNhanSanXuat.Text))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin sản phẩm.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -370,16 +382,17 @@ namespace Quản_lý_ShowCamera
                         }
                         else
                         {
-                            MessageBox.Show("Không tìm thấy sản phẩm với MãSP = " + txtMaSP.Text);
+                            MessageBox.Show("Không tìm thấy sản phẩm với MãSP = " + txtMaSP.Text, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Đã xảy ra lỗi khi sửa thông tin sản phẩm: " + ex.Message);
+                MessageBox.Show("Đã xảy ra lỗi khi sửa thông tin sản phẩm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
         private void mnuThoat_Click(object sender, EventArgs e)
@@ -432,7 +445,7 @@ namespace Quản_lý_ShowCamera
 
         private void txtDonGia_TextChanged(object sender, EventArgs e)
         {
-            if (!long.TryParse(txtDonGia.Text, out long donGia) || donGia <= 0)
+            if (!double.TryParse(txtDonGia.Text, out double donGia) || donGia <= 0)
             {
                 // Nếu không phải số hoặc số nhỏ hơn hoặc bằng 0, loại bỏ nó
                 MessageBox.Show("Đơn giá phải lớn hơn 0 và không quá 9223372036854775807", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);

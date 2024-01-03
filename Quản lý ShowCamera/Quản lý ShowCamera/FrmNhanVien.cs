@@ -56,6 +56,17 @@ namespace Quản_lý_ShowCamera
 
         private void mnuThem_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtMatKhau.Text) ||
+                string.IsNullOrWhiteSpace(txtHo.Text) ||
+                string.IsNullOrWhiteSpace(txtTen.Text) ||
+                string.IsNullOrWhiteSpace(txtDiaChi.Text) ||
+                string.IsNullOrWhiteSpace(txtSdtNV.Text) ||
+                txtSdtNV.Text.Length != 10)
+            {
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin nhân viên và kiểm tra lại số điện thoại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             // Kiểm tra xem các TextBox có giá trị không rỗng
             if (txtMatKhau.Text != "" &&
                 txtHo.Text != "" && txtTen.Text != "" &&
@@ -258,6 +269,17 @@ namespace Quản_lý_ShowCamera
 
         private void mnuSua_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtMatKhau.Text) ||
+              string.IsNullOrWhiteSpace(txtHo.Text) ||
+              string.IsNullOrWhiteSpace(txtTen.Text) ||
+              string.IsNullOrWhiteSpace(txtDiaChi.Text) ||
+              string.IsNullOrWhiteSpace(txtSdtNV.Text) ||
+                txtSdtNV.Text.Length != 10)
+            {
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin nhân viên và kiểm tra lại số điện thoại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            } 
+
             // Kiểm tra xem các TextBox có giá trị không rỗng
             if (!string.IsNullOrWhiteSpace(txtMaNV.Text) && !string.IsNullOrWhiteSpace(txtMatKhau.Text) &&
                 !string.IsNullOrWhiteSpace(txtHo.Text) && !string.IsNullOrWhiteSpace(txtTen.Text) &&
@@ -403,6 +425,11 @@ namespace Quản_lý_ShowCamera
 
             // Cập nhật giá trị của TextBox
             txtSdtNV.Text = input;
+        }
+
+        private void txtMatKhau_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

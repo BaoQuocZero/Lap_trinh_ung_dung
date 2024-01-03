@@ -65,7 +65,11 @@ namespace Quản_lý_ShowCamera
 
         private void mnuThem_Click(object sender, EventArgs e)
         {
-            if (txtTenKH.Text == "" || txtDiaChi.Text == "" || txtSdtKH.Text == "" || txtSdtKH.Text.Length != 10)
+            if (string.IsNullOrWhiteSpace(txtTenKH.Text) ||
+                string.IsNullOrWhiteSpace(txtDiaChi.Text) ||
+                string.IsNullOrWhiteSpace(txtSdtKH.Text) ||
+                txtSdtKH.Text.Length != 10 ||
+                !txtSdtKH.Text.All(char.IsDigit))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin khách hàng và số điện thoại phải là 10 số!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -265,11 +269,16 @@ namespace Quản_lý_ShowCamera
 
         private void mnuSua_Click(object sender, EventArgs e)
         {
-            if (txtMaKH.Text == "" || txtTenKH.Text == "" || txtDiaChi.Text == "" || txtSdtKH.Text == "" || txtSdtKH.Text.Length != 10)
+            if (string.IsNullOrWhiteSpace(txtTenKH.Text) ||
+                string.IsNullOrWhiteSpace(txtDiaChi.Text) ||
+                string.IsNullOrWhiteSpace(txtSdtKH.Text) ||
+                txtSdtKH.Text.Length != 10 ||
+                !txtSdtKH.Text.All(char.IsDigit))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin khách hàng và số điện thoại phải là 10 số!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
 
             string MaKH, tenKhachHang, diaChi, sdt;
 
@@ -354,8 +363,27 @@ namespace Quản_lý_ShowCamera
 
         private void txtDiaChi_TextChanged(object sender, EventArgs e)
         {
+            string inputText = txtDiaChi.Text;
+            StringBuilder validText = new StringBuilder();
+
+            // Kiểm tra từng ký tự trong văn bản
+            foreach (char c in inputText)
+            {
+                // Kiểm tra xem ký tự là chữ cái tiếng Việt hoặc khoảng trắng
+                if ((char.GetUnicodeCategory(c) == System.Globalization.UnicodeCategory.LowercaseLetter ||
+                    char.GetUnicodeCategory(c) == System.Globalization.UnicodeCategory.UppercaseLetter) || char.IsWhiteSpace(c))
+                {
+                    validText.Append(c);
+                }
+            }
+
+            // Gán văn bản hợp lệ vào ô văn bản
+            txtDiaChi.Text = validText.ToString();
+
+            // Gọi hàm khachhang() sau khi xử lý văn bản
             khachhang();
         }
+
 
         private void tìmKiếmToolStripMenuItem_Click(object sender, EventArgs e)
         {
